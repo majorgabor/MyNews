@@ -22,3 +22,8 @@ A MyNews egy olyan közösségi oldal, ahol a regisztrált felhasználók bejegy
 - **Guest:** megtekintheti a bejegyzéseket és a kommenteket, de nem írhat, kedvelhet vagy jelenthet.
 
 ### Adatbázis modell
+![messages](https://user-images.githubusercontent.com/32630836/31410359-b1322b28-ae0e-11e7-9af8-be0149e6bfea.png)
+![posts](https://user-images.githubusercontent.com/32630836/31410360-b14bf72e-ae0e-11e7-9345-8638a3b5a693.png)
+![report](https://user-images.githubusercontent.com/32630836/31410361-b166531c-ae0e-11e7-8b07-c8a1582cc491.png)
+![users](https://user-images.githubusercontent.com/32630836/31410363-b184b172-ae0e-11e7-8750-143b824c9ce4.png)
+![comments](https://user-images.githubusercontent.com/32630836/31410364-b19de656-ae0e-11e7-940a-e324ff29c400.png)
