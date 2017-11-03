@@ -1,1 +1,4 @@
 INSERT INTO NEWS (ID, VERSION, DATE, LIKES, DISLIKES, TEXT) VALUES (321, 1, SYSDATE,52, 31, 'This is a news!');
+
+INSERT INTO USER (ID, VERSION, EMAIL, NAME, AGE, CITY, PASSWORD, DATE, ROLE) VALUES (10, 0, 'admin@admin.com', 'admin', null, null, 'admin', SYSDATE, 'ADMIN');
+INSERT INTO USER (ID, VERSION, EMAIL, NAME, AGE, CITY, PASSWORD, DATE, ROLE) VALUES (11, 0, 'nagymark@java.com', 'Nagy Márk', 21, 'Budapest', '1234', SYSDATE, 'USER');
