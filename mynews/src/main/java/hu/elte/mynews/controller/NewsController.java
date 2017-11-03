@@ -1,7 +1,9 @@
 
 package hu.elte.mynews.controller;
 
+import hu.elte.mynews.annotation.Role;
 import hu.elte.mynews.entity.News;
+import hu.elte.mynews.entity.User;
 import hu.elte.mynews.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ public class NewsController {
     //@Autowired
     //private CommentRepository commentRepository;
     
+    @Role({User.Role.USER, User.Role.ADMIN})
     @GetMapping("/timeline")
     public String list(Model model){
         News newNews = new News();
@@ -28,6 +31,7 @@ public class NewsController {
         return "mynews";
     }
     
+    @Role({ User.Role.ADMIN})
     @PostMapping("/add")
     public String addNews(@ModelAttribute News newNews){
         newsRepository.save(newNews);
