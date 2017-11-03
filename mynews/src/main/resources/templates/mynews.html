@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>MyNews</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h2>Add news:</h2>
+        <form method="post" th:action="@{/news/add}" th:object="${newNews}">
+            <input type="text" th:field="${newNews.text}" />
+            <input type="submit" />
+        </form>
+        <h1>News:</h1>
+        <ul>
+            <li th:each="post : ${news}">
+                <span th:text="${post.id}"></span><br />
+                <span th:text="${post.text}"></span><br />
+                <span th:text="${post.likes}"></span><br />
+                <span th:text="${post.dislikes}"></span><br />
+                <span th:text="${post.date}"></span><br />
+            </li>
+        </ul>
+    </body>
+</html>
