@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>UsersDatasheet</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h1>Users:</h1>
+        <ul>
+            <li th:each="user : ${users}">
+                mame: <span th:text="${user.name}"></span>
+                email: <span th:text="${user.email}"></span>
+                age: <span th:text="${user.age}"></span>
+                city: <span th:text="${user.city}"></span>
+            </li>
+        </ul>
+    </body>
+</html>
