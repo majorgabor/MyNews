@@ -11,4 +11,5 @@ import org.springframework.web.context.annotation.SessionScope;
 @Data
 public class SessionService {
     private User currentUser;
+    private String name;
 }

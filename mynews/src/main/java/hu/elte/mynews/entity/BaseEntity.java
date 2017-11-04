@@ -15,5 +15,5 @@ public class BaseEntity {
     private Long id;
 
     @Version
-    private int version;
+    private int version = 0;
 }

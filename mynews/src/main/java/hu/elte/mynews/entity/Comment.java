@@ -38,4 +38,9 @@ public class Comment extends BaseEntity {
     @JoinColumn
     @ManyToOne(targetEntity = User.class)
     private User user;
+
+    @Override
+    public String toString() {
+        return "Comment";
+    }
 }

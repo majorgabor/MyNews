@@ -57,4 +57,9 @@ public class User extends BaseEntity {
                cascade = CascadeType.ALL,
                mappedBy = "user")
     private List<Comment> comments;
+
+    @Override
+    public String toString() {
+        return "User";
+    }
 }

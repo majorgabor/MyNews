@@ -7,8 +7,8 @@
     <body>
         <h1>Login</h1>
         <form method="post" th:action="@{/auth/login}" th:object="${loginUser}">
-            <input type="email" th:field="${loginUser.email}" /><br/>
-            <input type="password" th:field="${loginUser.password}" /><br/>
+            email: <input type="email" th:field="${loginUser.email}" /><br/>
+            password: <input type="password" th:field="${loginUser.password}" /><br/>
             <input type="submit" />
         </form>
         <h2>Registry</h2>

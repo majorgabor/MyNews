@@ -38,6 +38,14 @@ public class NewsController {
         Iterable<News> list = newsRepository.findAll();
         model.addAttribute("news", list);
         model.addAttribute("newNews", newNews);
+        String name = new String();
+        User logedinUser = sessionService.getCurrentUser();
+        if(logedinUser == null){
+            name = "Guest";
+        } else {
+            name = logedinUser.getName();  
+        }
+        model.addAttribute("name", name);
         return "mynews";
     }
     

@@ -8,7 +8,7 @@
         <h2>Reports:</h2>
         <ul>
             <li th:each="report : ${reports}">
-                user: <span th:text="${report.user}"></span><br />
+                user: <span th:text="${report.user.name}"></span><br />
                 report: <span th:text="${report.text}"></span><br />
                 date: <span th:text="${report.date}"></span><br />
             </li>

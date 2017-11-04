@@ -5,6 +5,8 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
+        <h3>Logd in as:</h3>
+        <span th:text="${name}"></span>
         <h2>Add news:</h2>
         <form method="post" th:action="@{/news/add}" th:object="${newNews}">
             <input type="text" th:field="${newNews.text}" />
@@ -13,16 +15,19 @@
         <h1>News:</h1>
         <ul>
             <li th:each="post : ${news}">
-                <span th:text="${post.id}"></span><br />
-                <span th:text="${post.text}"></span><br />
-                <span th:text="${post.likes}"></span><br />
-                <span th:text="${post.dislikes}"></span><br />
-                <span th:text="${post.date}"></span><br />
+                post_id: <span th:text="${post.id}"></span><br />
+                user_id: <span th:text="${post.user.id}"></span>
+                user_name: <span th:text="${post.user.name}"></span><br />
+                news: <span th:text="${post.text}"></span><br />
+                likes: <span th:text="${post.likes}"></span>
+                dislikes: <span th:text="${post.dislikes}"></span><br />
+                date: <span th:text="${post.date}"></span><br />
                 <ul>
                     <li th:each="comment : ${post.comments}">
-                        <span th:text="${comment.text}"></span>
+                        comment: <span th:text="${comment.text}"></span>
                     </li>
                 </ul>
+                <br/>
             </li>
         </ul>
     </body>
