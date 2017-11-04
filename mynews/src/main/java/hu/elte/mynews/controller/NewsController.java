@@ -31,7 +31,7 @@ public class NewsController {
     @Autowired
     private SessionService sessionService;
     
-    //@Role({User.Role.USER, User.Role.ADMIN})
+    
     @GetMapping("/timeline")
     public String list(Model model){
         News newNews = new News();
@@ -41,7 +41,7 @@ public class NewsController {
         return "mynews";
     }
     
-    //@Role({ User.Role.ADMIN})
+    //@Role({User.Role.USER, User.Role.ADMIN})
     @PostMapping("/add")
     public String addNews(@ModelAttribute News newNews){
         newNews.setUser(sessionService.getCurrentUser());
@@ -49,7 +49,7 @@ public class NewsController {
         return "redirect:/news/timeline";
     }
     
-    //@Role({ User.Role.ADMIN})
+    //@Role({User.Role.USER, User.Role.ADMIN})
     @PostMapping("/addcomment")
     public String addComment(@RequestBody Comment newComment) {
         newComment.setUser(sessionService.getCurrentUser());
@@ -57,10 +57,19 @@ public class NewsController {
         return "redirect:/news/timeline";
     }
     
+    //@Role({User.Role.USER, User.Role.ADMIN})
     @PostMapping("/report")
     public String report(@RequestBody Report newReport) {
         newReport.setUser(sessionService.getCurrentUser());
         reportRepository.save(newReport);
         return "redirect:/news/timeline";
+    }
+    
+    //@Role({ User.Role.ADMIN})
+    @GetMapping("/reports")
+    public String listReport(Model model){
+        Iterable<Report> list = reportRepository.findAll();
+        model.addAttribute("reports", list);
+        return "reports";
     }
 }
