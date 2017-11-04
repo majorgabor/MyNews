@@ -4,9 +4,11 @@ package hu.elte.mynews.controller;
 import hu.elte.mynews.annotation.Role;
 import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.News;
+import hu.elte.mynews.entity.Report;
 import hu.elte.mynews.entity.User;
 import hu.elte.mynews.repository.CommentRepository;
 import hu.elte.mynews.repository.NewsRepository;
+import hu.elte.mynews.repository.ReportRepository;
 import hu.elte.mynews.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class NewsController {
     private NewsRepository newsRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private ReportRepository reportRepository;
     @Autowired
     private SessionService sessionService;
     
@@ -50,6 +54,13 @@ public class NewsController {
     public String addComment(@RequestBody Comment newComment) {
         newComment.setUser(sessionService.getCurrentUser());
         commentRepository.save(newComment);
+        return "redirect:/news/timeline";
+    }
+    
+    @PostMapping("/report")
+    public String report(@RequestBody Report newReport) {
+        newReport.setUser(sessionService.getCurrentUser());
+        reportRepository.save(newReport);
         return "redirect:/news/timeline";
     }
 }
