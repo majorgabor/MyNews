@@ -24,7 +24,9 @@ public class AuthController {
     @GetMapping("/login")
     public String getLogin(Model model){
         User loginUser = new User();
+        User newUser = new User();
         model.addAttribute("loginUser", loginUser);
+        model.addAttribute("newUser", newUser);
         return "login";
     }
     
@@ -50,6 +52,13 @@ public class AuthController {
     @RequestMapping("/debug")
     public String debug() {
         System.out.println(sessionService.getCurrentUser());
+        return "redirect:/auth/login";
+    }
+    
+    @PostMapping("/registry")
+    public String registry(@ModelAttribute User newUser) {
+        newUser.setRole(User.Role.USER);
+        userRepository.save(newUser);
         return "redirect:/auth/login";
     }
 }

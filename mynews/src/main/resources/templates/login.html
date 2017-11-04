@@ -11,5 +11,12 @@
             <input type="password" th:field="${loginUser.password}" /><br/>
             <input type="submit" />
         </form>
+        <h1>Registry</h1>
+        <form method="post" th:action="@{/auth/registry}" th:object="${newUser}">
+            email: <input type="email" th:field="${newUser.email}" /><br/>
+            name: <input type="text" th:field="${newUser.name}" /><br/>
+            password: <input type="password" th:field="${newUser.password}" /><br/>
+            <input type="submit" />
+        </form>
     </body>
 </html>
