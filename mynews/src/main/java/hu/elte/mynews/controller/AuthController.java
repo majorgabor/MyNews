@@ -22,10 +22,10 @@ public class AuthController {
     private SessionService sessionService;
     
     @GetMapping("/login")
-    public String getLogin(Model model){
+    public String getLogin(Model model) {
         User loginUser = new User();
         User newUser = new User();
-        model.addAttribute("loginUser", loginUser);
+        model.addAttribute("loginUser",loginUser);
         model.addAttribute("newUser", newUser);
         return "login";
     }
@@ -37,6 +37,7 @@ public class AuthController {
             System.out.println("Login successful");
             System.out.println(login.get().toString());
             sessionService.setCurrentUser(login.get());
+            return "redirect:/news/timeline";
         } else {
             System.out.println("Login failed");
         }
