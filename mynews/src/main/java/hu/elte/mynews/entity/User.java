@@ -2,10 +2,13 @@
 package hu.elte.mynews.entity;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,4 +47,14 @@ public class User extends BaseEntity {
     public enum Role {
         GUEST, USER, ADMIN
     }
+    
+    @OneToMany(targetEntity = News.class, 
+               cascade = CascadeType.ALL,
+               mappedBy = "user")
+    private List<News> news;
+    
+    @OneToMany(targetEntity = Comment.class, 
+               cascade = CascadeType.ALL,
+               mappedBy = "user")
+    private List<Comment> comments;
 }

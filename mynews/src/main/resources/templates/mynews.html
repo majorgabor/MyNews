@@ -18,6 +18,11 @@
                 <span th:text="${post.likes}"></span><br />
                 <span th:text="${post.dislikes}"></span><br />
                 <span th:text="${post.date}"></span><br />
+                <ul>
+                    <li th:each="comment : ${post.comments}">
+                        <span th:text="${comment.text}"></span>
+                    </li>
+                </ul>
             </li>
         </ul>
     </body>
