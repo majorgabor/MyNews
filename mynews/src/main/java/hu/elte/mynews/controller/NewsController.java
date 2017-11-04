@@ -7,6 +7,7 @@ import hu.elte.mynews.entity.News;
 import hu.elte.mynews.entity.User;
 import hu.elte.mynews.repository.CommentRepository;
 import hu.elte.mynews.repository.NewsRepository;
+import hu.elte.mynews.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class NewsController {
     private NewsRepository newsRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private SessionService sessionService;
     
     //@Role({User.Role.USER, User.Role.ADMIN})
     @GetMapping("/timeline")
@@ -37,6 +40,7 @@ public class NewsController {
     //@Role({ User.Role.ADMIN})
     @PostMapping("/add")
     public String addNews(@ModelAttribute News newNews){
+        newNews.setUser(sessionService.getCurrentUser());
         newsRepository.save(newNews);
         return "redirect:/news/timeline";
     }
