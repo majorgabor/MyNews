@@ -29,24 +29,12 @@ public class NewsController {
     private CommentRepository commentRepository;
     @Autowired
     private ReportRepository reportRepository;
-    @Autowired
-    private SessionService sessionService;
     
     
     @GetMapping("/timeline")
     public String list(Model model){
-        News newNews = new News();
         Iterable<News> list = newsRepository.findAll();
         model.addAttribute("news", list);
-        model.addAttribute("newNews", newNews);
-        String name = new String();
-        User logedinUser = sessionService.getCurrentUser();
-        if(logedinUser == null){
-            name = "Guest";
-        } else {
-            name = logedinUser.getName();  
-        }
-        model.addAttribute("name", name);
         return "mynews";
     }
     
@@ -65,8 +53,8 @@ public class NewsController {
     }
     
     //@Role({User.Role.USER, User.Role.ADMIN})
-    @PostMapping("/report")
-    public String report(@RequestBody Report newReport) {
+    @PostMapping("/addreport")
+    public String addReport(@RequestBody Report newReport) {
         reportRepository.save(newReport);
         return "redirect:/news/timeline";
     }
