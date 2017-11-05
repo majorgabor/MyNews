@@ -12,5 +12,12 @@
         age: <span th:text="${me.age}"></span><br />
         city: <span th:text="${me.city}"></span><br />
         registry date: <span th:text="${me.date}"></span><br />
+        <form method="post" th:action="@{/datasheet/modify}" th:object="${modifyUser}">
+            mame: <input type="text" th:field="${modifyUser.name}" /><br/>
+            age: <input type="number" th:field="${modifyUser.age}" /><br/>
+            city: <input type="text" th:field="${modifyUser.city}" /><br/>
+            password: <input type="password" th:field="${modifyUser.password}" /><br/>
+            <input type="submit" />
+        </form>
     </body>
 </html>

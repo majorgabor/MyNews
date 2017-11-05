@@ -49,11 +49,13 @@ public class NewsController {
         return "mynews";
     }
     
-    //@Role({User.Role.USER, User.Role.ADMIN})
+    @Role({User.Role.USER, User.Role.ADMIN})
     @PostMapping("/add")
     public String addNews(@ModelAttribute News newNews){
-        newNews.setUser(sessionService.getCurrentUser());
-        newsRepository.save(newNews);
+        if(!newNews.getText().equals("")){
+            newNews.setUser(sessionService.getCurrentUser());
+            newsRepository.save(newNews);
+        }
         return "redirect:/news/timeline";
     }
     

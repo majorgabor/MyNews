@@ -60,6 +60,6 @@ public class User extends BaseEntity {
 
     @Override
     public String toString() {
-        return "User";
+        return "User: {id "+this.getId()+" version "+this.getVersion()+" name "+name+" email "+email+" password "+password+"}";
     }
 }

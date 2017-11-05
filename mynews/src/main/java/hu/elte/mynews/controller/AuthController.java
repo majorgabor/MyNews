@@ -58,8 +58,10 @@ public class AuthController {
     
     @PostMapping("/registry")
     public String registry(@ModelAttribute User newUser) {
-        newUser.setRole(User.Role.USER);
-        userRepository.save(newUser);
+        if(!newUser.getName().equals("") && !newUser.getEmail().equals("") && !newUser.getPassword().equals("")){
+            newUser.setRole(User.Role.USER);
+            userRepository.save(newUser);
+        }
         return "redirect:/auth/login";
     }
 }
