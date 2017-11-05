@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New Admin</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h2>New Admin:</h2>
+        <form method="post" th:action="@{/admin/newadmin}" th:object="${newUser}">
+            name: <input type="text" th:field="${newUser.name}" /><br/>
+            email: <input type="email" th:field="${newUser.email}" /><br/>
+            password: <input type="password" th:field="${newUser.password}" /><br/>
+            <input type="submit" />
+        </form>
+    </body>
+</html>

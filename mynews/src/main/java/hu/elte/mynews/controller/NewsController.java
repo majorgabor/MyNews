@@ -6,6 +6,7 @@ import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.News;
 import hu.elte.mynews.entity.Report;
 import hu.elte.mynews.entity.User;
+import static hu.elte.mynews.entity.User.Role.USER;
 import hu.elte.mynews.repository.CommentRepository;
 import hu.elte.mynews.repository.NewsRepository;
 import hu.elte.mynews.repository.ReportRepository;
@@ -49,20 +50,16 @@ public class NewsController {
         return "mynews";
     }
     
-    @Role({User.Role.USER, User.Role.ADMIN})
-    @PostMapping("/add")
-    public String addNews(@ModelAttribute News newNews){
-        if(!newNews.getText().equals("")){
-            newNews.setUser(sessionService.getCurrentUser());
-            newsRepository.save(newNews);
-        }
+    //@Role({User.Role.USER, User.Role.ADMIN})
+    @PostMapping("/addnews")
+    public String addNews(@RequestBody News newNews) {
+        newsRepository.save(newNews);
         return "redirect:/news/timeline";
     }
     
     //@Role({User.Role.USER, User.Role.ADMIN})
     @PostMapping("/addcomment")
     public String addComment(@RequestBody Comment newComment) {
-        newComment.setUser(sessionService.getCurrentUser());
         commentRepository.save(newComment);
         return "redirect:/news/timeline";
     }
@@ -70,16 +67,7 @@ public class NewsController {
     //@Role({User.Role.USER, User.Role.ADMIN})
     @PostMapping("/report")
     public String report(@RequestBody Report newReport) {
-        newReport.setUser(sessionService.getCurrentUser());
         reportRepository.save(newReport);
         return "redirect:/news/timeline";
-    }
-    
-    //@Role({ User.Role.ADMIN})
-    @GetMapping("/reports")
-    public String listReport(Model model){
-        Iterable<Report> list = reportRepository.findAll();
-        model.addAttribute("reports", list);
-        return "reports";
     }
 }

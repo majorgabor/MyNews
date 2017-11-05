@@ -7,11 +7,6 @@
     <body>
         <h3>Logd in as:</h3>
         <span th:text="${name}"></span>
-        <h2>Add news:</h2>
-        <form method="post" th:action="@{/news/add}" th:object="${newNews}">
-            <input type="text" th:field="${newNews.text}" />
-            <input type="submit" />
-        </form>
         <h1>News:</h1>
         <ul>
             <li th:each="post : ${news}">
