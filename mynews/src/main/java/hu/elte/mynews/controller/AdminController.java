@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -38,13 +39,19 @@ public class AdminController {
         return "reports";
     }
     
-    @Role({ User.Role.ADMIN})
+    /*@Role({ User.Role.ADMIN})
     @PostMapping("/newadmin")
     public String newadmin(@ModelAttribute User newUser) {
         if(!newUser.getName().equals("") && !newUser.getEmail().equals("") && !newUser.getPassword().equals("")){
             newUser.setRole(User.Role.ADMIN);
             userRepository.save(newUser);
         }
+        return "redirect:/admin/reports";
+    }*/
+    
+    @PostMapping("/newadmin")
+    public String newadmin(@RequestBody User newUser) {
+        userRepository.save(newUser);
         return "redirect:/admin/reports";
     }
 }
