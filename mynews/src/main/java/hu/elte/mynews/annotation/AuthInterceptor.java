@@ -3,6 +3,7 @@ package hu.elte.mynews.annotation;
 
 import hu.elte.mynews.entity.User;
 import hu.elte.mynews.service.SessionService;
+import hu.elte.mynews.service.UserService;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,13 +18,13 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
     
     @Autowired
-    private SessionService sessionService;
+    private UserService userService;
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.err.println("interceptor");
         List<User.Role> routeRoles = getRoles((HandlerMethod) handler);
-        User user = sessionService.getCurrentUser();
+        User user = userService.getCurrentUser();
 
         // when there are no restrictions, we let the user through
         if (routeRoles.isEmpty() || routeRoles.contains(User.Role.GUEST)) {

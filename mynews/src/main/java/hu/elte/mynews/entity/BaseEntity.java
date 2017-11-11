@@ -12,8 +12,8 @@ import lombok.Data;
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private long id;
 
     @Version
-    private int version = 0;
+    private int version;
 }

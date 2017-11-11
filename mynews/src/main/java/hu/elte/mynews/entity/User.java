@@ -38,7 +38,7 @@ public class User extends BaseEntity {
     
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date = new Date();
+    private Date date;
     
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
