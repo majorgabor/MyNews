@@ -48,12 +48,10 @@ public class User extends BaseEntity {
         GUEST, USER, ADMIN
     }
     
-    @OneToMany(targetEntity = News.class, 
-               cascade = CascadeType.ALL,
-               mappedBy = "user")
+    @OneToMany(targetEntity = News.class, cascade = CascadeType.ALL)
     private List<News> news;
     
-    @OneToMany(targetEntity = Comment.class, 
+    /*@OneToMany(targetEntity = Comment.class, 
                cascade = CascadeType.ALL,
                mappedBy = "user")
     private List<Comment> comments;
@@ -66,7 +64,7 @@ public class User extends BaseEntity {
     @OneToMany(targetEntity = Messege.class, 
                cascade = CascadeType.ALL,
                mappedBy = "toUser")
-    private List<Comment> incomeMesseges;
+    private List<Comment> incomeMesseges;*/
 
     @Override
     public String toString() {

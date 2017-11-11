@@ -6,15 +6,9 @@ import hu.elte.mynews.entity.User;
 import static hu.elte.mynews.entity.User.Role.ADMIN;
 import static hu.elte.mynews.entity.User.Role.USER;
 import hu.elte.mynews.exception.UserException;
-import hu.elte.mynews.repository.UserRepository;
-import hu.elte.mynews.service.SessionService;
 import hu.elte.mynews.service.UserService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -69,28 +63,4 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
-    
-    
-    /*
-    @RequestMapping("/logout")
-    public String logout() {
-        sessionService.setCurrentUser(null);
-        return "redirect:/auth/login";
-    }
-    
-    @RequestMapping("/debug")
-    public String debug() {
-        System.out.println(sessionService.getCurrentUser());
-        return "redirect:/auth/login";
-    }
-    
-    @PostMapping("/registry")
-    public String registry(@ModelAttribute User newUser) {
-        if(!newUser.getName().equals("") && !newUser.getEmail().equals("") && !newUser.getPassword().equals("")){
-            newUser.setRole(User.Role.USER);
-            userRepository.save(newUser);
-        }
-        return "redirect:/auth/login";
-    }
-    */
 }

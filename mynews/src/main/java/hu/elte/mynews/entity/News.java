@@ -25,21 +25,21 @@ public class News extends BaseEntity{
     private String text;
     
     @Column(nullable = false)
-    private Integer likes = 0;
+    private Integer likes;
     
     @Column(nullable = false)
-    private Integer dislikes = 0;
+    private Integer dislikes;
     
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date = new Date();
+    private Date date;
     
-    @OneToMany(targetEntity = Comment.class, 
+    /*@OneToMany(targetEntity = Comment.class, 
                cascade = CascadeType.ALL,
                mappedBy = "news")
-    private List<Comment> comments;
+    private List<Comment> comments;*/
     
-    @JoinColumn
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
     private User user;
 
