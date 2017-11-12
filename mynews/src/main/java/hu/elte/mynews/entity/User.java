@@ -51,8 +51,8 @@ public class User extends BaseEntity {
     @OneToMany(targetEntity = News.class, cascade = CascadeType.ALL)
     private List<News> news;
     
-    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    @OneToMany(targetEntity = Report.class, cascade = CascadeType.ALL)
+    private List<Report> report;
     
     /*@OneToMany(targetEntity = Messege.class, 
                cascade = CascadeType.ALL,

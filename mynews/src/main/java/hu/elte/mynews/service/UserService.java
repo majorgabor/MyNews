@@ -84,15 +84,15 @@ public class UserService {
 
     }
     
-    public User newComment(Comment comment) throws UserException {
-        User newCommentUser = userRepository.findOne(currentUser.getId());
-        if(newCommentUser != null){
-            newCommentUser.getComments().add(comment);
-            userRepository.save(newCommentUser);
-            currentUser = newCommentUser;
-            return newCommentUser;
-        } else {
-            throw new UserException();
-        }
-    }
+//    public User newComment(Comment comment) throws UserException {
+//        User newCommentUser = userRepository.findOne(currentUser.getId());
+//        if(newCommentUser != null){
+//            newCommentUser.getComments().add(comment);
+//            userRepository.save(newCommentUser);
+//            currentUser = newCommentUser;
+//            return newCommentUser;
+//        } else {
+//            throw new UserException();
+//        }
+//    }
 }

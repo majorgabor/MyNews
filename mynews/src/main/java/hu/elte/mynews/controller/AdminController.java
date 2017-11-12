@@ -2,56 +2,41 @@
 package hu.elte.mynews.controller;
 
 import hu.elte.mynews.annotation.Role;
-import hu.elte.mynews.entity.Report;
 import hu.elte.mynews.entity.User;
-import hu.elte.mynews.repository.ReportRepository;
-import hu.elte.mynews.repository.UserRepository;
+import static hu.elte.mynews.entity.User.Role.ADMIN;
+import hu.elte.mynews.exception.UserException;
+import hu.elte.mynews.service.ReportService;
+import hu.elte.mynews.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
     @Autowired
-    private ReportRepository reportRepository;
+    private ReportService reportService;
     
-    @Role({ User.Role.ADMIN})
-    @GetMapping("")
-    public String admin(Model model) {
-        User newUser = new User();
-        model.addAttribute("newUser", newUser);
-        return "admin";
-    }
-    
-    @Role({ User.Role.ADMIN})
+    @Role({ADMIN})
     @GetMapping("/reports")
-    public String listReport(Model model){
-        Iterable<Report> list = reportRepository.findAll();
-        model.addAttribute("reports", list);
-        return "reports";
+    public ResponseEntity listReports(){
+        return ResponseEntity.ok(reportService.listReports());
     }
     
-    /*@Role({ User.Role.ADMIN})
+    @Role({ADMIN})
     @PostMapping("/newadmin")
-    public String newadmin(@ModelAttribute User newUser) {
-        if(!newUser.getName().equals("") && !newUser.getEmail().equals("") && !newUser.getPassword().equals("")){
-            newUser.setRole(User.Role.ADMIN);
-            userRepository.save(newUser);
+    public ResponseEntity<User> newadmin(@RequestBody User newUser) {
+        try{
+            User newAdmin = userService.registrer(newUser, ADMIN);
+            return ResponseEntity.ok(newAdmin);
+        } catch (UserException ex) {
+            return ResponseEntity.badRequest().build();
         }
-        return "redirect:/admin/reports";
-    }*/
-    
-    @PostMapping("/newadmin")
-    public String newadmin(@RequestBody User newUser) {
-        userRepository.save(newUser);
-        return "redirect:/admin/reports";
     }
 }

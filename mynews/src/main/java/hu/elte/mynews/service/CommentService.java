@@ -34,12 +34,10 @@ public class CommentService {
         comment.setDate(new Date());
         comment.setLikes(0);
         comment.setDislikes(0);
-        comment.setUser(userService.getCurrentUser());
+        comment.setUser(userService.getCurrentUser().getId());
         if(newsRepository.findOne(id) != null){
-            comment.setNews(newsRepository.findOne(id));
+            comment.setNews(id);
             commentRepository.save(comment);
-            newsService.newComment(id, comment);
-            userService.newComment(comment);
             return comment;
         } else {
             throw new NewsException();

@@ -38,13 +38,13 @@ public class NewsController {
     private NewsService newsService;
     
     @GetMapping
-    public ResponseEntity<Iterable<News>> list(){
+    private ResponseEntity<Iterable<News>> list(){
         return ResponseEntity.ok(newsService.list());
     }
     
     @Role({USER, ADMIN})
     @PostMapping("/addnews")
-    public ResponseEntity<News> addNews(@RequestBody News news) {
+    private ResponseEntity<News> addNews(@RequestBody News news) {
         try{
             return ResponseEntity.ok(newsService.newNews(news));
         } catch (UserException ex) {

@@ -34,9 +34,6 @@ public class News extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     
-    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
-    private List<Comment> comments;
-    
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
     private User user;
