@@ -1,7 +1,6 @@
 
 package hu.elte.mynews.service;
 
-import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.News;
 import hu.elte.mynews.exception.NewsException;
 import hu.elte.mynews.exception.UserException;

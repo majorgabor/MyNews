@@ -17,19 +17,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Messege extends BaseEntity{
+public class Message extends BaseEntity{
+    @Column(nullable = false)
+    private long toUser;
+    
     @Column(nullable = false)
     private String text;
     
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date = new Date();
+    private Date date;
     
-    @JoinColumn
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
-    private User fromUser;
-    
-    @JoinColumn
-    @ManyToOne(targetEntity = User.class)
-    private User toUser;
+    private User user;
 }

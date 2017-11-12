@@ -2,6 +2,7 @@
 package hu.elte.mynews.service;
 
 import hu.elte.mynews.entity.Comment;
+import hu.elte.mynews.entity.Message;
 import hu.elte.mynews.entity.News;
 import hu.elte.mynews.entity.User;
 import hu.elte.mynews.exception.UserException;
@@ -84,15 +85,28 @@ public class UserService {
 
     }
     
-//    public User newComment(Comment comment) throws UserException {
-//        User newCommentUser = userRepository.findOne(currentUser.getId());
-//        if(newCommentUser != null){
-//            newCommentUser.getComments().add(comment);
-//            userRepository.save(newCommentUser);
-//            currentUser = newCommentUser;
-//            return newCommentUser;
-//        } else {
-//            throw new UserException();
-//        }
-//    }
+    public User profile(long id) throws UserException {
+        User user = userRepository.findOne(id);
+        if(user != null){
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User findUser(long id){
+        return userRepository.findOne(id);
+    }
+    
+    public User sendMessage(Message message) throws UserException {
+        User senderUser = userRepository.findOne(currentUser.getId());
+        if(senderUser != null){
+            senderUser.getMessage().add(message);
+            userRepository.save(senderUser);
+            currentUser = senderUser;
+            return senderUser;
+        } else {
+            throw new UserException();
+        }
+    }
 }

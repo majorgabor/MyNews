@@ -25,7 +25,7 @@ public class Report extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date = new Date();
     
-    @JoinColumn
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
     private User user;
 }

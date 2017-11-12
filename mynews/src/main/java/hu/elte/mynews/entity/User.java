@@ -54,15 +54,8 @@ public class User extends BaseEntity {
     @OneToMany(targetEntity = Report.class, cascade = CascadeType.ALL)
     private List<Report> report;
     
-    /*@OneToMany(targetEntity = Messege.class, 
-               cascade = CascadeType.ALL,
-               mappedBy = "fromUser")
-    private List<Comment> sendMesseges;
-    
-    @OneToMany(targetEntity = Messege.class, 
-               cascade = CascadeType.ALL,
-               mappedBy = "toUser")
-    private List<Comment> incomeMesseges;*/
+    @OneToMany(targetEntity = Message.class, cascade = CascadeType.ALL)
+    private List<Message> message;
 
     @Override
     public String toString() {
