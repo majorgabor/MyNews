@@ -22,25 +22,25 @@ public class Comment extends BaseEntity {
     private String text;
     
     @Column(nullable = false)
-    private Integer likes = 0;
+    private Integer likes;
     
     @Column(nullable = false)
-    private Integer dislikes = 0;
+    private Integer dislikes;
     
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date = new Date();
+    private Date date;
     
-    @JoinColumn
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = News.class)
     private News news;
     
-    @JoinColumn
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
     private User user;
 
     @Override
     public String toString() {
-        return "Comment";
+        return "Comment: {id: "+this.getId()+" version "+this.getVersion()+" text "+text+"}";
     }
 }

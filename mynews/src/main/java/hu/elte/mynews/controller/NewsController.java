@@ -18,6 +18,7 @@ import hu.elte.mynews.service.SessionService;
 import hu.elte.mynews.service.UserService;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class NewsController {
     @Autowired
     private NewsService newsService;
-    @Autowired
-    private UserService userService;
-    
     
     @GetMapping
     public ResponseEntity<Iterable<News>> list(){
@@ -63,4 +61,5 @@ public class NewsController {
             return ResponseEntity.badRequest().build();
         }
     }
+    //reportolás
 }

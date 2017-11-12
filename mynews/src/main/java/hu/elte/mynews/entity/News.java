@@ -34,10 +34,8 @@ public class News extends BaseEntity{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     
-    /*@OneToMany(targetEntity = Comment.class, 
-               cascade = CascadeType.ALL,
-               mappedBy = "news")
-    private List<Comment> comments;*/
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
+    private List<Comment> comments;
     
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
@@ -45,6 +43,6 @@ public class News extends BaseEntity{
 
     @Override
     public String toString() {
-        return "News";
+        return "News: {id: "+this.getId()+" version "+this.getVersion()+" text "+text+"}";
     }
 }
