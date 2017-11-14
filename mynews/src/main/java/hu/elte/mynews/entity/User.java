@@ -1,6 +1,7 @@
 
 package hu.elte.mynews.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -48,14 +49,25 @@ public class User extends BaseEntity {
         GUEST, USER, ADMIN
     }
     
+    @JsonIgnore
     @OneToMany(targetEntity = News.class, cascade = CascadeType.ALL)
     private List<News> news;
     
+    @JsonIgnore
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
+    private List<Comment> comment;
+    
+    @JsonIgnore
     @OneToMany(targetEntity = Report.class, cascade = CascadeType.ALL)
     private List<Report> report;
     
+    @JsonIgnore
     @OneToMany(targetEntity = Message.class, cascade = CascadeType.ALL)
-    private List<Message> message;
+    private List<Message> sentMessage;
+    
+    @JsonIgnore
+    @OneToMany(targetEntity = Message.class, cascade = CascadeType.ALL)
+    private List<Message> gotMessage;
 
     @Override
     public String toString() {

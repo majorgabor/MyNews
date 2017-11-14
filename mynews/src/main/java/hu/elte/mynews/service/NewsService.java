@@ -1,6 +1,7 @@
 
 package hu.elte.mynews.service;
 
+import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.News;
 import hu.elte.mynews.exception.NewsException;
 import hu.elte.mynews.exception.UserException;
@@ -46,14 +47,14 @@ public class NewsService {
         }
     }
     
-//    public News newComment(long id, Comment comment) throws NewsException {
-//        News commentedNews = newsRepository.findOne(id);
-//        if(commentedNews != null){
-//            commentedNews.getComments().add(comment);
-//            newsRepository.save(commentedNews);
-//            return commentedNews;
-//        } else {
-//            throw new NewsException();
-//        }
-//    }
+    public News newComment(long id, Comment comment) throws NewsException {
+        News commentedNews = newsRepository.findOne(id);
+        if(commentedNews != null){
+            commentedNews.getComment().add(comment);
+            newsRepository.save(commentedNews);
+            return commentedNews;
+        } else {
+            throw new NewsException();
+        }
+    }
 }

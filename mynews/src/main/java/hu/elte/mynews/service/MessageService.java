@@ -23,11 +23,12 @@ public class MessageService {
     
     public Message sendMessage(long id, Message message) throws UserException {
         message.setDate(new Date());
-        message.setUser(userService.getCurrentUser());
+        message.setFromUser(userService.getCurrentUser());
         if(userService.findUser(id) != null){
-            message.setToUser(id);
+            message.setToUser(userService.findUser(id));
             messageRepository.save(message);
-            userService.sendMessage(message);
+            userService.sentMessage(message);
+            userService.gotMessage(id, message);
             return message;
         } else {
             throw new UserException();
@@ -36,9 +37,9 @@ public class MessageService {
     
     public List<Message> messageList() {
         Iterable<Message> allMessage = messageRepository.findAll();
-        List<Message> myMessage = new ArrayList<Message>();
+        List<Message> myMessage = new ArrayList<>();
         for(Message message : allMessage){
-            if(message.getToUser() == userService.getCurrentUser().getId()){
+            if(message.getToUser().getId() == userService.getCurrentUser().getId()){
                 myMessage.add(message);
             }
         }

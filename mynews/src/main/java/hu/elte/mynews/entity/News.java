@@ -1,6 +1,7 @@
 
 package hu.elte.mynews.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -37,6 +38,10 @@ public class News extends BaseEntity{
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
     private User user;
+    
+    @JsonIgnore
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
+    private List<Comment> comment;
 
     @Override
     public String toString() {

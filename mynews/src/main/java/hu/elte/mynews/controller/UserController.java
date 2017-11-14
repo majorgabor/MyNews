@@ -38,7 +38,7 @@ public class UserController {
     private ResponseEntity<String> logout(@RequestBody User user){
         try{
             userService.logout();
-            return ResponseEntity.ok("logged_out");
+            return ResponseEntity.ok("LOGGED_OUT");
         } catch (UserException ex) {
             return ResponseEntity.badRequest().build();
         }

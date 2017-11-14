@@ -82,7 +82,18 @@ public class UserService {
         } else {
             throw new UserException();
         }
-
+    }
+    
+    public User newComment(Comment comment) throws UserException {
+        User newCommentUser = userRepository.findOne(currentUser.getId());
+        if(newCommentUser != null){
+            newCommentUser.getComment().add(comment);
+            userRepository.save(newCommentUser);
+            currentUser = newCommentUser;
+            return newCommentUser;
+        } else {
+            throw new UserException();
+        }
     }
     
     public User profile(long id) throws UserException {
@@ -98,13 +109,25 @@ public class UserService {
         return userRepository.findOne(id);
     }
     
-    public User sendMessage(Message message) throws UserException {
+    public User sentMessage(Message message) throws UserException {
         User senderUser = userRepository.findOne(currentUser.getId());
         if(senderUser != null){
-            senderUser.getMessage().add(message);
+            senderUser.getSentMessage().add(message);
             userRepository.save(senderUser);
             currentUser = senderUser;
             return senderUser;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User gotMessage(long id, Message message) throws UserException {
+        User reciverUser = userRepository.findOne(id);
+        if(reciverUser != null){
+            reciverUser.getGotMessage().add(message);
+            userRepository.save(reciverUser);
+            currentUser = reciverUser;
+            return reciverUser;
         } else {
             throw new UserException();
         }

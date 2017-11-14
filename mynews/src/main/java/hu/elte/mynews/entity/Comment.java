@@ -31,11 +31,13 @@ public class Comment extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     
-    @Column(nullable = false)
-    private long user;
+    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne(targetEntity = User.class)
+    private User user;
     
-    @Column(nullable = false)
-    private long news;
+    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne(targetEntity = News.class)
+    private News news;
 
     @Override
     public String toString() {

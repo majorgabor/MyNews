@@ -18,8 +18,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Message extends BaseEntity{
-    @Column(nullable = false)
-    private long toUser;
     
     @Column(nullable = false)
     private String text;
@@ -30,5 +28,9 @@ public class Message extends BaseEntity{
     
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne(targetEntity = User.class)
-    private User user;
+    private User fromUser;
+    
+    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne(targetEntity = User.class)
+    private User toUser;
 }
