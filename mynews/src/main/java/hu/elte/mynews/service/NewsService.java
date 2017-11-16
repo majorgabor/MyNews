@@ -3,10 +3,13 @@ package hu.elte.mynews.service;
 
 import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.News;
+import hu.elte.mynews.exception.CommentException;
 import hu.elte.mynews.exception.NewsException;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.repository.NewsRepository;
+import static java.util.Arrays.asList;
 import java.util.Date;
+import java.util.List;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,8 @@ public class NewsService {
     private NewsRepository newsRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CommentService commentService;
     
     public Iterable<News> list(){
         return newsRepository.findAll();
@@ -51,6 +56,31 @@ public class NewsService {
         News commentedNews = newsRepository.findOne(id);
         if(commentedNews != null){
             commentedNews.getComment().add(comment);
+            newsRepository.save(commentedNews);
+            return commentedNews;
+        } else {
+            throw new NewsException();
+        }
+    }
+    
+    public News deleteNews(long id) throws NewsException, UserException, CommentException{
+        News deleteNews = newsRepository.findOne(id);
+        if(deleteNews != null){
+            commentService.deleteNewsComment(deleteNews.getComment());
+            long userId = deleteNews.getUser().getId();
+            userService.deleteNews(userId, deleteNews);
+            newsRepository.delete(deleteNews);
+            return deleteNews;
+        } else {
+            throw new NewsException();
+        }
+    }
+    
+
+    public News deleteComment(long newsId, Comment comment) throws NewsException {
+        News commentedNews = newsRepository.findOne(newsId);
+        if(commentedNews != null){
+            commentedNews.getComment().remove(comment);
             newsRepository.save(commentedNews);
             return commentedNews;
         } else {

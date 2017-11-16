@@ -2,6 +2,7 @@
 package hu.elte.mynews.service;
 
 import hu.elte.mynews.entity.Message;
+import hu.elte.mynews.entity.User;
 import hu.elte.mynews.exception.UserException;
 import java.util.Date;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class MessageService {
     public Message sendMessage(long id, Message message) throws UserException {
         message.setDate(new Date());
         message.setFromUser(userService.getCurrentUser());
-        if(userService.findUser(id) != null){
+        if(userService.findUser(id) != null && userService.findUser(id).getRole() != User.Role.GUEST){
             message.setToUser(userService.findUser(id));
             messageRepository.save(message);
             userService.sentMessage(message);
@@ -39,7 +40,7 @@ public class MessageService {
         Iterable<Message> allMessage = messageRepository.findAll();
         List<Message> myMessage = new ArrayList<>();
         for(Message message : allMessage){
-            if(message.getToUser().getId() == userService.getCurrentUser().getId()){
+            if(message.getToUser().equals(userService.getCurrentUser())){
                 myMessage.add(message);
             }
         }

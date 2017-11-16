@@ -2,7 +2,6 @@
 package hu.elte.mynews.annotation;
 
 import hu.elte.mynews.entity.User;
-import hu.elte.mynews.service.SessionService;
 import hu.elte.mynews.service.UserService;
 import java.util.Arrays;
 import java.util.Collections;

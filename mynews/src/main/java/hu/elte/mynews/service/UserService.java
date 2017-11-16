@@ -8,6 +8,7 @@ import hu.elte.mynews.entity.User;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.repository.UserRepository;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +129,44 @@ public class UserService {
             userRepository.save(reciverUser);
             currentUser = reciverUser;
             return reciverUser;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User deleteUser(long id) throws UserException {
+        User deleteUser = userRepository.findOne(id);
+        if(deleteUser != null && !deleteUser.equals(currentUser)){
+            deleteUser.setEmail("deleted_user");
+            deleteUser.setName("deleted_user");
+            deleteUser.setAge(null);
+            deleteUser.setCity(null);
+            deleteUser.setPassword("");
+            deleteUser.setRole(User.Role.GUEST);
+            userRepository.save(deleteUser);
+            return deleteUser;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User deleteNews(long userId, News news) throws UserException{
+        User newsUser  = userRepository.findOne(userId);
+        if(newsUser != null){
+            newsUser.getNews().remove(news);
+            userRepository.save(newsUser);
+            return newsUser;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User deleteComment(long userId, Comment comment) throws UserException {
+        User commentedUser = userRepository.findOne(userId);
+        if(commentedUser != null){
+            commentedUser.getComment().remove(comment);
+            userRepository.save(commentedUser);
+            return commentedUser;
         } else {
             throw new UserException();
         }

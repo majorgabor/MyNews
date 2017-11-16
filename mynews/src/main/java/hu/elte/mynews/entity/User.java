@@ -68,7 +68,17 @@ public class User extends BaseEntity {
     @JsonIgnore
     @OneToMany(targetEntity = Message.class, cascade = CascadeType.ALL)
     private List<Message> gotMessage;
-
+    
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if(obj == null) return false;
+        if(this.getClass() != obj.getClass()) return false;
+        User other = (User) obj;
+        return this.getId() == other.getId();
+        
+    }
+    
     @Override
     public String toString() {
         return "User: {id "+this.getId()+" version "+this.getVersion()+" name "+name+" email "+email+"}";

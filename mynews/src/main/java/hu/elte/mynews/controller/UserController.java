@@ -9,6 +9,7 @@ import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,6 +71,16 @@ public class UserController {
     private ResponseEntity<User> profile(@PathVariable long id){
         try {
             return ResponseEntity.ok(userService.profile(id));
+        } catch (UserException ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @Role({ADMIN})
+    @DeleteMapping("delete/{id}")
+    private ResponseEntity<User> deleteUser(@PathVariable long id){
+        try{
+            return ResponseEntity.ok(userService.deleteUser(id));
         } catch (UserException ex) {
             return ResponseEntity.badRequest().build();
         }
