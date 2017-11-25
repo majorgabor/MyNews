@@ -1,0 +1,16 @@
+<mat-card class="loginform">
+  <mat-card-content>
+      <h4>Login</h4>
+      <mat-form-field>
+          <input matInput #userEmail type="email" placeholder="email">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput #userPassword type="password" placeholder="password">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" (click)="clickButton(userEmail.value, userPassword.value)">
+          LOGIN
+      </button>
+  </mat-card-content>
+</mat-card>

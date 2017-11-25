@@ -11,6 +11,14 @@ import { NewsService } from '../../services/news.service';
 export class NewsViewComponent implements OnInit {
   private _data: News[];
 
+  public addNews(news: News): void {
+    this.newsService.addNews(news).subscribe(() => {
+      this.newsService.getAllNews().subscribe((newses: News[]) => {
+        this._data = newses;
+      });
+    });
+  }
+
   constructor(
     private newsService: NewsService
   ) { }

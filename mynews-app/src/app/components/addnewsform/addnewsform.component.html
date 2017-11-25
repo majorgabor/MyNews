@@ -1,0 +1,12 @@
+<mat-card class="addnewsform">
+  <mat-card-content>
+      <h4>Your news:</h4>
+      <mat-form-field>
+          <input matInput #newsText type="text" placeholder="what's on your mind?">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" (click)="clickButton(newsText.value)">
+          SEND
+      </button>
+  </mat-card-content>
+</mat-card>

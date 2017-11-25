@@ -8,7 +8,7 @@
       {{ news.text }}
     </p>
     <p>
-      {{ news.date }}
+      {{ news.date | date:"yyyy MMMM d. H:mm:ss" }}
     </p>
   </mat-card-content>
   <mat-card-actions>

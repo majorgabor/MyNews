@@ -11,16 +11,20 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  public login(user: User): Observable<any>{
+  public login(user: User): Observable<any> {
     return this.httpClient.post(api + 'user/login', user);
   }
 
-  public logout(user: User): Observable<any>{
+  public logout(user: User): Observable<any> {
     return this.httpClient.post(api + 'user/logout', user);
   }
 
-  public register(user: User): Observable<any>{
+  public register(user: User): Observable<any> {
     return this.httpClient.post(api + 'user/register', user);
+  }
+
+  public actualUser(): Observable<any> {
+    return this.httpClient.get(api + 'user');
   }
 
 }

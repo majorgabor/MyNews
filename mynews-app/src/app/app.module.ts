@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { NewsComponent } from './components/news/news.component';
 import { NewslistComponent } from './components/newslist/newslist.component';
 import { NewsViewComponent } from './components/news-view/news-view.component';
+import { AddnewsformComponent } from './components/addnewsform/addnewsform.component';
+import { LoginViewComponent } from './components/login-view/login-view.component';
+import { LoginformComponent } from './components/loginform/loginform.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { NewsViewComponent } from './components/news-view/news-view.component';
     AppComponent,
     NewsComponent,
     NewslistComponent,
-    NewsViewComponent
+    NewsViewComponent,
+    AddnewsformComponent,
+    LoginViewComponent,
+    LoginformComponent,
   ],
   imports: [
     BrowserModule,
