@@ -1,0 +1,8 @@
+<mat-card class="newslist">
+  <mat-card-content>
+    <h4>News</h4>
+    <mat-list>
+        <app-news *ngFor="let news of newses" [news]="news"></app-news>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -5,11 +5,17 @@ import { AppRouterModule } from './modules/app-router/app-router.module';
 import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppComponent } from './app.component';
+import { NewsComponent } from './components/news/news.component';
+import { NewslistComponent } from './components/newslist/newslist.component';
+import { NewsViewComponent } from './components/news-view/news-view.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NewsComponent,
+    NewslistComponent,
+    NewsViewComponent
   ],
   imports: [
     BrowserModule,

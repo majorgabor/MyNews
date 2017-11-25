@@ -1,0 +1,19 @@
+<mat-card class="news-card">
+  <mat-card-header>
+    <mat-card-title>{{ news.user.name }}</mat-card-title>
+    <mat-card-subtitle>{{ news.user.email }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ news.text }}
+    </p>
+    <p>
+      {{ news.date }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>DISLIKE</button>
+    <button mat-button>REPORT</button>
+  </mat-card-actions>
+</mat-card>
