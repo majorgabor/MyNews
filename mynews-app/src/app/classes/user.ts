@@ -4,7 +4,7 @@ export enum Role{
 }
 
 export class User {
-    public id: number;
+    private id: number;
 
     public constructor(
         private email: string,
