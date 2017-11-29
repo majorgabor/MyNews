@@ -10,6 +10,8 @@ import hu.elte.mynews.exception.NewsException;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.service.CommentService;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,6 +53,8 @@ public class CommentController {
         try{
             return ResponseEntity.ok(commentService.rate(id, rate));
         } catch (CommentException ex) {
+            return ResponseEntity.badRequest().build();
+        } catch (UserException ex) {
             return ResponseEntity.badRequest().build();
         }
     }

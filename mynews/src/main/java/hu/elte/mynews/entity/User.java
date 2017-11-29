@@ -79,6 +79,14 @@ public class User extends BaseEntity {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<News> dislikedNews;
     
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Comment> likedComment;
+    
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Comment> dislikedComment;
+    
     @Override
     public boolean equals(Object obj){
         if(this == obj) return true;

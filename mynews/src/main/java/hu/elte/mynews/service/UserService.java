@@ -195,4 +195,28 @@ public class UserService {
             throw new UserException();
         }
     }
+    
+    public User likeComment(Comment ratedComment) throws UserException {
+        User user = userRepository.findOne(currentUser.getId());
+        if(user != null){
+            user.getLikedComment().add(ratedComment);
+            user.getDislikedComment().remove(ratedComment);
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User dislikeComment(Comment ratedComment) throws UserException {
+        User user = userRepository.findOne(currentUser.getId());
+        if(user != null){
+            user.getDislikedComment().add(ratedComment);
+            user.getLikedComment().remove(ratedComment);
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
 }

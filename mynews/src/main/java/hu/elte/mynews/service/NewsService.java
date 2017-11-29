@@ -52,7 +52,6 @@ public class NewsService {
                 ratedNews.getLikerUser().add(userService.findUser(userService.getCurrentUser().getId()));
                 ratedNews.setLikes(ratedNews.getLikerUser().size());
                 ratedNews.setDislikes(ratedNews.getDislikerUser().size());
-//                newsRepository.save(ratedNews);
                 userService.likeNews(ratedNews);
             }
             if(rate.equals("dislike")){
@@ -60,7 +59,6 @@ public class NewsService {
                 ratedNews.getDislikerUser().add(userService.findUser(userService.getCurrentUser().getId()));
                 ratedNews.setLikes(ratedNews.getLikerUser().size());
                 ratedNews.setDislikes(ratedNews.getDislikerUser().size());
-//                newsRepository.save(ratedNews);
                 userService.dislikeNews(ratedNews);
             }
             newsRepository.save(ratedNews);

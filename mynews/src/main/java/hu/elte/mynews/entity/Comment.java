@@ -1,10 +1,13 @@
 
 package hu.elte.mynews.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,8 +27,16 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private Integer likes;
     
+    @JsonIgnore
+    @ManyToMany(mappedBy="likedComment")
+    private Set<User> likerUser;
+    
     @Column(nullable = false)
     private Integer dislikes;
+    
+    @JsonIgnore
+    @ManyToMany(mappedBy="dislikedComment")
+    private Set<User> dislikerUser;
     
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
