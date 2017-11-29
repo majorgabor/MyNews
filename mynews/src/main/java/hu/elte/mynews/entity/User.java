@@ -4,11 +4,13 @@ package hu.elte.mynews.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -68,6 +70,14 @@ public class User extends BaseEntity {
     @JsonIgnore
     @OneToMany(targetEntity = Message.class, cascade = CascadeType.ALL)
     private List<Message> gotMessage;
+    
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<News> likedNews;
+    
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<News> dislikedNews;
     
     @Override
     public boolean equals(Object obj){

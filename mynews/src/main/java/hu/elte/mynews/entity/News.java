@@ -4,10 +4,12 @@ package hu.elte.mynews.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -28,8 +30,16 @@ public class News extends BaseEntity{
     @Column(nullable = false)
     private Integer likes;
     
+    @JsonIgnore
+    @ManyToMany(mappedBy="likedNews")
+    private Set<User> likerUser;
+    
     @Column(nullable = false)
     private Integer dislikes;
+    
+    @JsonIgnore
+    @ManyToMany(mappedBy="dislikedNews")
+    private Set<User> dislikerUser;
     
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

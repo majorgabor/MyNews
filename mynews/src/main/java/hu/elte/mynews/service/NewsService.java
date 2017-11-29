@@ -44,13 +44,27 @@ public class NewsService {
         return news;
     }
     
-    public News rate(long id, String rate) throws NewsException {
-        News likedNews = newsRepository.findOne(id);
-        if (likedNews != null && ( rate.equals("like") || rate.equals("dislike") )){
-            if(rate.equals("like")) likedNews.setLikes((likedNews.getLikes()+1));
-            if(rate.equals("dislike")) likedNews.setDislikes((likedNews.getDislikes()+1));
-            newsRepository.save(likedNews);
-            return likedNews;
+    public News rate(long id, String rate) throws NewsException, UserException {
+        News ratedNews = newsRepository.findOne(id);
+        if (ratedNews != null && ( rate.equals("like") || rate.equals("dislike") )){
+            if(rate.equals("like")){
+                ratedNews.getDislikerUser().remove(userService.findUser(userService.getCurrentUser().getId()));
+                ratedNews.getLikerUser().add(userService.findUser(userService.getCurrentUser().getId()));
+                ratedNews.setLikes(ratedNews.getLikerUser().size());
+                ratedNews.setDislikes(ratedNews.getDislikerUser().size());
+//                newsRepository.save(ratedNews);
+                userService.likeNews(ratedNews);
+            }
+            if(rate.equals("dislike")){
+                ratedNews.getLikerUser().remove(userService.findUser(userService.getCurrentUser().getId()));
+                ratedNews.getDislikerUser().add(userService.findUser(userService.getCurrentUser().getId()));
+                ratedNews.setLikes(ratedNews.getLikerUser().size());
+                ratedNews.setDislikes(ratedNews.getDislikerUser().size());
+//                newsRepository.save(ratedNews);
+                userService.dislikeNews(ratedNews);
+            }
+            newsRepository.save(ratedNews);
+            return ratedNews;
         } else {
             throw new NewsException();
         }

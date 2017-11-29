@@ -171,4 +171,28 @@ public class UserService {
             throw new UserException();
         }
     }
+
+    public User likeNews(News ratedNews) throws UserException {
+        User user = userRepository.findOne(currentUser.getId());
+        if(user != null){
+            user.getLikedNews().add(ratedNews);
+            user.getDislikedNews().remove(ratedNews);
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User dislikeNews(News ratedNews) throws UserException {
+        User user = userRepository.findOne(currentUser.getId());
+        if(user != null){
+            user.getDislikedNews().add(ratedNews);
+            user.getLikedNews().remove(ratedNews);
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
 }

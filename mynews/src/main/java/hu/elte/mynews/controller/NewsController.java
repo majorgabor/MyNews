@@ -55,6 +55,8 @@ public class NewsController {
             return ResponseEntity.ok(newsService.rate(id, rate));
         } catch (NewsException ex) {
             return ResponseEntity.badRequest().build();
+        } catch (UserException ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
     
