@@ -26,8 +26,12 @@ public class NewsService {
     @Autowired
     private CommentService commentService;
     
-    public Iterable<News> list(){
+    public Iterable<News> getAllNews(){
         return newsRepository.findAll();
+    }
+    
+    public News getNewsById(long id){
+        return newsRepository.findOne(id);
     }
     
     public News newNews(News news) throws UserException{
@@ -40,7 +44,7 @@ public class NewsService {
         return news;
     }
     
-    public News rate(long id, String rate, News news) throws NewsException {
+    public News rate(long id, String rate) throws NewsException {
         News likedNews = newsRepository.findOne(id);
         if (likedNews != null && ( rate.equals("like") || rate.equals("dislike") )){
             if(rate.equals("like")) likedNews.setLikes((likedNews.getLikes()+1));

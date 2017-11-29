@@ -9,8 +9,7 @@ import hu.elte.mynews.exception.CommentException;
 import hu.elte.mynews.exception.NewsException;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.service.CommentService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,18 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/news/comments")
+@RequestMapping("/api/news/comments")
 public class CommentController {
     @Autowired
     private CommentService commentService;
     
-    @GetMapping
-    private ResponseEntity<Iterable<Comment>> list(){
-        return ResponseEntity.ok(commentService.list());
+    @GetMapping("/{id}")
+    private ResponseEntity<List<Comment>> listCommentToNews(@PathVariable long id){
+        return ResponseEntity.ok(commentService.listCommentToNews(id));
     }
     
     @Role({USER, ADMIN})
-    @PutMapping("/{id}")
+    @PutMapping("/addcomment/{id}")
     private ResponseEntity<Comment> newComment(@PathVariable long id, @RequestBody Comment comment){
         try{
             return ResponseEntity.ok(commentService.newComment(id, comment));
@@ -42,6 +41,16 @@ public class CommentController {
             return ResponseEntity.badRequest().build();
         } catch (UserException ex) {
             System.out.println("******** user ex:" + ex.toString());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @Role({USER, ADMIN})
+    @PutMapping("/{rate}/{id}")
+    private ResponseEntity<Comment> rate(@PathVariable String rate, @PathVariable long id){
+        try{
+            return ResponseEntity.ok(commentService.rate(id, rate));
+        } catch (CommentException ex) {
             return ResponseEntity.badRequest().build();
         }
     }

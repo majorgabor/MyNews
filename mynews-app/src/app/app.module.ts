@@ -11,6 +11,10 @@ import { NewsViewComponent } from './components/news-view/news-view.component';
 import { AddnewsformComponent } from './components/addnewsform/addnewsform.component';
 import { LoginViewComponent } from './components/login-view/login-view.component';
 import { LoginformComponent } from './components/loginform/loginform.component';
+import { CommentonNewsViewComponent } from './components/commenton-news-view/commenton-news-view.component';
+import { CommentlistComponent } from './components/commentlist/commentlist.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { AddcommentComponent } from './components/addcomment/addcomment.component';
 
 
 @NgModule({
@@ -22,6 +26,10 @@ import { LoginformComponent } from './components/loginform/loginform.component';
     AddnewsformComponent,
     LoginViewComponent,
     LoginformComponent,
+    CommentonNewsViewComponent,
+    CommentlistComponent,
+    CommentComponent,
+    AddcommentComponent,
   ],
   imports: [
     BrowserModule,

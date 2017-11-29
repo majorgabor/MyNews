@@ -6,10 +6,15 @@ import { api } from '../config/api';
 
 @Injectable()
 export class UserService {
+  private loggedInUser: User;
 
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  public actualUser(): Observable<any> {
+    return this.httpClient.get(api + 'user');
+  }
 
   public login(user: User): Observable<any> {
     return this.httpClient.post(api + 'user/login', user);
@@ -23,8 +28,19 @@ export class UserService {
     return this.httpClient.post(api + 'user/register', user);
   }
 
-  public actualUser(): Observable<any> {
-    return this.httpClient.get(api + 'user');
+  public modify(id: number, user: User): Observable<any> {
+    return this.httpClient.put(api + 'user/modify/' + id, user);
+  }
+  
+  public profile(id: number): Observable<any> {
+    return this.httpClient.get(api + 'user/profile/' + id);
   }
 
+  public getLoggedInUser(): User {
+    return this.loggedInUser;
+  }
+
+  public setLoggedInUser(user: User): void {
+    this.loggedInUser = user;
+  }
 }

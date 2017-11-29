@@ -7,6 +7,7 @@ import hu.elte.mynews.exception.NewsException;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.repository.CommentRepository;
 import hu.elte.mynews.repository.NewsRepository;
+import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +30,15 @@ public class CommentService {
     private NewsService newsService;
     
     
-    public Iterable<Comment> list(){
-        return commentRepository.findAll();
+    public List<Comment> listCommentToNews(long id){
+        Iterable<Comment> allComment = commentRepository.findAll();
+        List<Comment> result = new ArrayList<>();
+        for(Comment comment: allComment){
+            if(comment.getNews().getId() == id){
+                result.add(comment);
+            }
+        }
+        return result;
     }
     
     public Comment newComment(long id, Comment comment) throws UserException, NewsException{
@@ -47,6 +55,18 @@ public class CommentService {
             return comment;
         } else {
             throw new NewsException();
+        }
+    }
+    
+    public Comment rate(long id, String rate) throws CommentException {
+        Comment likedComment = commentRepository.findOne(id);
+        if(likedComment != null && ( rate.equals("like") || rate.equals("dislike") )){
+            if(rate.equals("like")) likedComment.setLikes(likedComment.getLikes()+1);
+            if(rate.equals("dislike")) likedComment.setDislikes(likedComment.getDislikes()+1);
+            commentRepository.save(likedComment);
+            return likedComment;
+        } else {
+            throw new CommentException();
         }
     }
     

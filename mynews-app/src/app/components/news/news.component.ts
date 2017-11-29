@@ -12,6 +12,11 @@ export class NewsComponent implements OnInit {
   @Input()
   public news: News;
 
+  public rate(rate: string): void {
+    this.newsService.rate(rate, this.news.id).subscribe((news: News) => {
+      this.news = news;
+    });
+  }
   constructor(
     private newsService: NewsService
   ) { }

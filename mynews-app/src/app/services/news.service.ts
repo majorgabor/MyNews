@@ -16,7 +16,19 @@ export class NewsService {
     return this.httpClient.get(api + 'news');
   }
 
+  public getNewsById(id: number): Observable<any> {
+    return this.httpClient.get(api+ '/news/' + id);
+  }
+
   public addNews(news: News): Observable<any> {
     return this.httpClient.post(api + 'news/addnews', news);
+  }
+
+  public rate(rate: string, id: number): Observable<any> {
+    return this.httpClient.put(api + 'news/' + rate + '/' + id, null);
+  }
+
+  public deleteNews(id: number): Observable<any> {
+    return this.httpClient.delete(api + 'news/delete/' + id);
   }
 }

@@ -1,0 +1,12 @@
+<mat-card class="addcommentform">
+  <mat-card-content>
+      <h4>New Comment</h4>
+      <mat-form-field class="inputfield">
+          <textarea matInput #commentText type="text" placeholder="enter new commet..."></textarea>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" (click)="clickButton(commentText.value)">
+          SEND
+      </button>
+  </mat-card-content>
+</mat-card>

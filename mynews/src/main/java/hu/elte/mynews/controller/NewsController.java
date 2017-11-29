@@ -29,8 +29,13 @@ public class NewsController {
     private NewsService newsService;
     
     @GetMapping
-    private ResponseEntity<Iterable<News>> list(){
-        return ResponseEntity.ok(newsService.list());
+    private ResponseEntity<Iterable<News>> getAllNews(){
+        return ResponseEntity.ok(newsService.getAllNews());
+    }
+    
+    @GetMapping("/{id}")
+    private ResponseEntity<News> getNewsById(@PathVariable long id){
+        return ResponseEntity.ok(newsService.getNewsById(id));
     }
     
     @Role({USER, ADMIN})
@@ -45,9 +50,9 @@ public class NewsController {
     
     @Role({USER, ADMIN})
     @PutMapping("/{rate}/{id}")
-    private ResponseEntity<News> rate(@PathVariable String rate, @PathVariable long id, @RequestBody News news){
+    private ResponseEntity<News> rate(@PathVariable String rate, @PathVariable long id){
         try{
-            return ResponseEntity.ok(newsService.rate(id, rate, news));
+            return ResponseEntity.ok(newsService.rate(id, rate));
         } catch (NewsException ex) {
             return ResponseEntity.badRequest().build();
         }

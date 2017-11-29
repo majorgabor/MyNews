@@ -9,12 +9,12 @@ import { NewsService } from '../../services/news.service';
   providers: [NewsService]
 })
 export class NewsViewComponent implements OnInit {
-  private _data: News[];
+  private _news: News[];
 
   public addNews(news: News): void {
     this.newsService.addNews(news).subscribe(() => {
       this.newsService.getAllNews().subscribe((newses: News[]) => {
-        this._data = newses;
+        this._news = newses;
       });
     });
   }
@@ -25,7 +25,7 @@ export class NewsViewComponent implements OnInit {
 
   ngOnInit() {
     this.newsService.getAllNews().subscribe((newses: News[]) => {
-      this._data = newses;
+      this._news = newses;
     });
   }
 

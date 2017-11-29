@@ -9,11 +9,10 @@ import { UserService } from '../../services/user.service';
   providers: [UserService]
 })
 export class LoginViewComponent implements OnInit {
-  private _loggedinUser: User;
 
   public login(user: User): void {
     this.userService.login(user).subscribe((loggedinUser: User) => {
-      this._loggedinUser = loggedinUser;
+      this.userService.setLoggedInUser(loggedinUser);
     });
   }
 
@@ -22,9 +21,7 @@ export class LoginViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.userService.actualUser().subscribe((user: User) => {
-    //this._loggedinUser = user;
-    //});
+
   }
 
 }
