@@ -1,6 +1,6 @@
 <mat-card class="news-card">
   <mat-card-header>
-    <mat-card-title>{{ news.user.name }}</mat-card-title>
+    <mat-card-title routerLink="/user/{{news.user.id}}">{{ news.user.name }}</mat-card-title>
     <mat-card-subtitle>
       {{ news.user.email }}
       <br>

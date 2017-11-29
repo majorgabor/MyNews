@@ -5,7 +5,7 @@ export enum Role{
 
 export class User {
     private id: number;
-    private name: string;
+    public name: string;
     private age: number;
     private city: string;
     private date: Date;

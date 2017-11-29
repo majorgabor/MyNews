@@ -1,4 +1,8 @@
-
-<!--<app-news [news]="_news"></app-news>-->
+<div *ngIf="_news">
+    <app-news [news]="_news"></app-news>
+</div>
+<div *ngIf="!_news">
+    <mat-spinner></mat-spinner>
+</div>
 <app-commentlist [comments]="_comments"></app-commentlist>
 <app-addcomment (createComment)="addComment($event)"></app-addcomment>

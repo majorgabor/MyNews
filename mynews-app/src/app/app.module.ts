@@ -15,6 +15,8 @@ import { CommentonNewsViewComponent } from './components/commenton-news-view/com
 import { CommentlistComponent } from './components/commentlist/commentlist.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { AddcommentComponent } from './components/addcomment/addcomment.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { AddcommentComponent } from './components/addcomment/addcomment.componen
     CommentlistComponent,
     CommentComponent,
     AddcommentComponent,
+    UserViewComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
