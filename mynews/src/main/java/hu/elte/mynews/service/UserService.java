@@ -8,7 +8,7 @@ import hu.elte.mynews.entity.User;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.repository.UserRepository;
 import java.util.Date;
-import java.util.List;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,12 @@ public class UserService {
     
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     
     public User login(User user) throws UserException {
-        Optional<User> loginUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
-        if(loginUser.isPresent()){
+        Optional<User> loginUser = userRepository.findByEmail(user.getEmail());
+        if(loginUser.isPresent() && passwordEncoder.matches(user.getPassword(), loginUser.get().getPassword())){
             currentUser = loginUser.get();
             return loginUser.get();
         } else {

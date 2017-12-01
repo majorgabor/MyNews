@@ -17,6 +17,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { AddcommentComponent } from './components/addcomment/addcomment.component';
 import { UserViewComponent } from './components/user-view/user-view.component';
 import { UserComponent } from './components/user/user.component';
+import { MenuViewComponent } from './components/menu-view/menu-view.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { UserComponent } from './components/user/user.component';
     AddcommentComponent,
     UserViewComponent,
     UserComponent,
+    MenuViewComponent,
   ],
   imports: [
     BrowserModule,

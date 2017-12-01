@@ -1,3 +1,8 @@
 
-<app-addnewsform (createNews)="addNews($event)"></app-addnewsform>
-<app-newslist [newses]="_news"></app-newslist>
+<app-addnewsform *ngIf="userService.userHasRole(['USER', 'ADMIN'])" (createNews)="addNews($event)"></app-addnewsform>
+<div *ngIf="_news">
+    <app-newslist [newses]="_news"></app-newslist>
+</div>
+<div *ngIf="!_news">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>

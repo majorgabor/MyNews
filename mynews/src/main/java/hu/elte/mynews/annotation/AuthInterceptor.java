@@ -21,7 +21,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.err.println("interceptor");
         List<User.Role> routeRoles = getRoles((HandlerMethod) handler);
         User user = userService.getCurrentUser();
 

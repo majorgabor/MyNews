@@ -29,6 +29,15 @@ public class UserController {
         return ResponseEntity.ok(userService.getCurrentUser());
     }
     
+    @GetMapping("/loggedin")
+    private ResponseEntity loggedIn(){
+        if(userService.getCurrentUser() == null){
+            return ResponseEntity.ok(false);
+        } else {
+            return ResponseEntity.ok(userService.getCurrentUser());
+        }
+    }
+    
     @PostMapping("/login")
     private ResponseEntity<User> login(@RequestBody User user) {
         try{
@@ -41,10 +50,10 @@ public class UserController {
     
     @Role({ADMIN, USER})
     @PostMapping("/logout")
-    private ResponseEntity<String> logout(@RequestBody User user){
+    private ResponseEntity logout(){
         try{
             userService.logout();
-            return ResponseEntity.ok("LOGGED_OUT");
+            return ResponseEntity.ok(true);
         } catch (UserException ex) {
             return ResponseEntity.badRequest().build();
         }

@@ -2,7 +2,14 @@
     <app-news [news]="_news"></app-news>
 </div>
 <div *ngIf="!_news">
-    <mat-spinner></mat-spinner>
+    <mat-spinner class="spinner"></mat-spinner>
 </div>
-<app-commentlist [comments]="_comments"></app-commentlist>
-<app-addcomment (createComment)="addComment($event)"></app-addcomment>
+<div *ngIf="_comments">
+    <app-commentlist [comments]="_comments"></app-commentlist>
+</div>
+<div *ngIf="!_comments">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div *ngIf="_news && _comments && userService.userHasRole(['USER', 'ADMIN'])">
+    <app-addcomment (createComment)="addComment($event)"></app-addcomment>
+</div>

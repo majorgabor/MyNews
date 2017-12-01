@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { News } from '../../classes/news';
 import { NewsService } from '../../services/news.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-news-view',
   templateUrl: './news-view.component.html',
   styleUrls: ['./news-view.component.css'],
-  providers: [NewsService]
+  providers: [NewsService, UserService]
 })
 export class NewsViewComponent implements OnInit {
   private _news: News[];
@@ -20,7 +21,8 @@ export class NewsViewComponent implements OnInit {
   }
 
   constructor(
-    private newsService: NewsService
+    private newsService: NewsService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {

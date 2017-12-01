@@ -9,7 +9,7 @@ export class User {
     private age: number;
     private city: string;
     private date: Date;
-    private role: Role;
+    public role: Role;
 
     public constructor(
         private email: string,

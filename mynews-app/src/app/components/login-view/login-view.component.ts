@@ -10,14 +10,7 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginViewComponent implements OnInit {
 
-  public login(user: User): void {
-    this.userService.login(user).subscribe((loggedinUser: User) => {
-      this.userService.setLoggedInUser(loggedinUser);
-    });
-  }
-
   constructor(
-    private userService: UserService
   ) { }
 
   ngOnInit() {

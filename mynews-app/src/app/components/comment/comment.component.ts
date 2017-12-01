@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from '../../classes/comment';
 import { CommentService } from '../../services/comment.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css'],
-  providers: [CommentService]
+  providers: [CommentService, UserService]
 })
 export class CommentComponent implements OnInit {
   @Input()
@@ -18,7 +19,8 @@ export class CommentComponent implements OnInit {
     });
   }
   constructor(
-    private commentService: CommentService
+    private commentService: CommentService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {

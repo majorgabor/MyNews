@@ -2,6 +2,7 @@
 package hu.elte.mynews.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,7 @@ public class User extends BaseEntity {
     @Column
     private String city;
     
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false)
     private String password;
     

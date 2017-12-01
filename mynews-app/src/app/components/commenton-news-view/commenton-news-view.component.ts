@@ -4,12 +4,13 @@ import { News } from '../../classes/news';
 import { Comment } from '../../classes/comment';
 import { NewsService } from '../../services/news.service';
 import { CommentService } from '../../services/comment.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-commenton-news-view',
   templateUrl: './commenton-news-view.component.html',
   styleUrls: ['./commenton-news-view.component.css'],
-  providers: [NewsService, CommentService]
+  providers: [NewsService, CommentService, UserService]
 })
 export class CommentonNewsViewComponent implements OnInit {
   public _news: News;
@@ -28,7 +29,8 @@ export class CommentonNewsViewComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private newsService: NewsService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
