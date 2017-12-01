@@ -22,7 +22,6 @@ export class UserViewComponent implements OnInit {
     const id: number = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.userService.profile(id).subscribe((user: User) => {
       this._user = user;
-      console.log(user);
     })
   }
 

@@ -1,6 +1,7 @@
 
 package hu.elte.mynews.service;
 
+import hu.elte.mynews.configuration.PasswordHashConfiguration;
 import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.Message;
 import hu.elte.mynews.entity.News;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -27,6 +29,9 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
+    public Iterable<User> allUsers(){
+        return userRepository.findAll();
+    }
     public User login(User user) throws UserException {
         Optional<User> loginUser = userRepository.findByEmail(user.getEmail());
         if(loginUser.isPresent() && passwordEncoder.matches(user.getPassword(), loginUser.get().getPassword())){
@@ -52,7 +57,8 @@ public class UserService {
             || userRepository.findByEmail(user.getEmail()).isPresent()){
             throw new UserException();
         }
-        currentUser = userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
         return user;
     }
     

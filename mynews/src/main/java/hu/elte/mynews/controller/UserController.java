@@ -25,8 +25,8 @@ public class UserController {
     private UserService userService;
     
     @GetMapping
-    private ResponseEntity<User> actualUser(){
-        return ResponseEntity.ok(userService.getCurrentUser());
+    private ResponseEntity<Iterable<User>> allUsers(){
+        return ResponseEntity.ok(userService.allUsers());
     }
     
     @GetMapping("/loggedin")

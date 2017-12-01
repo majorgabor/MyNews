@@ -2,6 +2,12 @@
   MyNews
   <span class="left">
     <button mat-button routerLink="/news">News</button>
+    <span *ngIf="userService.isLoggedIn() && userService.userHasRole(['ADMIN'])">
+      <button  mat-button [matMenuTriggerFor]="menu">Admin</button>
+      <mat-menu  #menu="matMenu">
+        <button mat-menu-item routerLink="admin/delete">Delete User</button>
+      </mat-menu>
+    </span>
   </span>
   <span class="right">
     <button *ngIf="!userService.isLoggedIn()" mat-button routerLink="/user">Login</button>

@@ -13,7 +13,7 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-  public actualUser(): Observable<any> {
+  public allUser(): Observable<any> {
     return this.httpClient.get(api + 'user');
   }
 
@@ -35,8 +35,14 @@ export class UserService {
     });
   }
 
-  public register(user: User): Observable<any> {
-    return this.httpClient.post(api + 'user/register', user);
+  public register(name: string, email: string, password: string): Observable<boolean> {
+    const result = new Subject<boolean>();
+    this.httpClient.post(api + 'user/register', {name, email, password}).subscribe((user: User) => {
+      result.next(true);
+    }, (error) => {
+      result.next(false);
+    });
+    return result;
   }
 
   public modify(id: number, user: User): Observable<any> {
@@ -45,6 +51,10 @@ export class UserService {
   
   public profile(id: number): Observable<any> {
     return this.httpClient.get(api + 'user/profile/' + id);
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(api + 'user/delete/' + id);
   }
 
   public isLoggedIn(): boolean {
