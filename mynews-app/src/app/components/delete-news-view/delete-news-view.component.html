@@ -1,5 +1,7 @@
-<div *ngIf="dataSource && userService.isLoggedIn() && userService.userHasRole(['ADMIN'])" class="example-container mat-elevation-z8">
-  <div class="example-header">
+<div *ngIf="dataSource && userService.isLoggedIn() && userService.userHasRole(['ADMIN'])" class="container mat-elevation-z8">
+
+  <div class="header">
+      <h3>Delete News:</h3>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>

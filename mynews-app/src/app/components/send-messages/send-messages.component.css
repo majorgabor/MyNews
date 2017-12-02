@@ -1,8 +1,12 @@
-.addnewsform {
+.sendmessage {
     margin: 20px auto;
     width: 60%;
 }
 
 .inputfield {
   width: 100%;
+}
+
+.spinner {
+  margin: auto;
 }

@@ -1,7 +1,6 @@
 
 package hu.elte.mynews.service;
 
-import hu.elte.mynews.configuration.PasswordHashConfiguration;
 import hu.elte.mynews.entity.Comment;
 import hu.elte.mynews.entity.Message;
 import hu.elte.mynews.entity.News;
@@ -15,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 

@@ -2,13 +2,16 @@
     margin: auto;
 }
 /* Structure */
-.example-container {
+.container {
+    width: 95%;
+    margin: auto;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     min-width: 300px;
   }
   
-  .example-header {
+  .header {
     min-height: 64px;
     padding: 8px 24px 0;
   }

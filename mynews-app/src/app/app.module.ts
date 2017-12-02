@@ -25,6 +25,9 @@ import { DeleteNewsViewComponent } from './components/delete-news-view/delete-ne
 import { DeleteCommentViewComponent } from './components/delete-comment-view/delete-comment-view.component';
 import { ProfileViewComponent } from './components/profile-view/profile-view.component';
 import { ProfileEditformComponent } from './components/profile-editform/profile-editform.component';
+import { MessagesViewComponent } from './components/messages-view/messages-view.component';
+import { SendMessagesComponent } from './components/send-messages/send-messages.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { ProfileEditformComponent } from './components/profile-editform/profile-
     DeleteCommentViewComponent,
     ProfileViewComponent,
     ProfileEditformComponent,
+    MessagesViewComponent,
+    SendMessagesComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,

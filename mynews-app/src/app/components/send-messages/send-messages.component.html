@@ -1,0 +1,23 @@
+<mat-card *ngIf="_users" class="sendmessage">
+    <mat-card-content>
+        <h4>Send Message</h4>
+        <mat-form-field class="inputfield">
+            <textarea matInput #messageText type="text" placeholder="write..."></textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="inputfield">
+            <mat-select placeholder="Send to" #messageTo>
+                <mat-option *ngFor="let user of _users" [value]="user">
+                    {{ user.email }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" (click)="clickButton(messageText.value, messageTo.value)">
+            SEND
+        </button>
+    </mat-card-content>
+  </mat-card>
+<div *ngIf="!_users">
+    <mat-spinner class="spinner"></mat-spinner>
+</div>

@@ -1,7 +1,7 @@
 <mat-card *ngIf="user" class="editform">
     <mat-card-content>
         <h4>Edit</h4>
-        <div *ngIf="error">{{error}}</div>
+        <div *ngIf="_error">{{_error}}</div>
         <mat-form-field>
           <input matInput #userName type="text" placeholder="Name" value="{{user.name}}">
         </mat-form-field>

@@ -12,7 +12,7 @@ export class User {
 
     public constructor(
         public name: string,
-        private email: string,
+        public email: string,
         private age: number,
         private city: string,
         private password: string

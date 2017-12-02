@@ -9,6 +9,8 @@ import { UserService } from '../../services/user.service';
   providers: [UserService]
 })
 export class ProfileEditformComponent implements OnInit {
+  private _error: string;
+  
   @Input()
   public user: User;
 
@@ -17,7 +19,10 @@ export class ProfileEditformComponent implements OnInit {
 
   public clickButton(name: string, email: string, age: number, city: string, password: string, passwordre: string): void {
     if(password == passwordre){
+      this._error = "";
       this.editUser.emit(new User(name, email, age, city, password));
+    } else {
+      this._error = "Passwords dosen't matches";
     }
   }
 

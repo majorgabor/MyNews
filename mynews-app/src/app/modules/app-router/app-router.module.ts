@@ -9,6 +9,7 @@ import { DeleteUserViewComponent } from '../../components/delete-user-view/delet
 import { DeleteNewsViewComponent } from '../../components/delete-news-view/delete-news-view.component';
 import { DeleteCommentViewComponent } from '../../components/delete-comment-view/delete-comment-view.component';
 import { ProfileViewComponent } from '../../components/profile-view/profile-view.component';
+import { MessagesViewComponent } from '../../components/messages-view/messages-view.component';
 
 const appRoutes: Routes = [
   { path: 'news', component: NewsViewComponent },
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
   { path: 'admin/delete/user', component: DeleteUserViewComponent },
   { path: 'admin/delete/news', component: DeleteNewsViewComponent },
   { path: 'admin/delete/comment', component: DeleteCommentViewComponent },
-  { path: 'profile/:id', component: ProfileViewComponent }
+  { path: 'profile/:id', component: ProfileViewComponent },
+  { path: 'messages', component: MessagesViewComponent }
 ];
 
 @NgModule({
