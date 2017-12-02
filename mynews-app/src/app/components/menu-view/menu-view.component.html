@@ -12,6 +12,7 @@
     </span>
   </span>
   <span class="right">
+    <button *ngIf="userService.isLoggedIn()" mat-button (click)="profile()">Profile</button>
     <button *ngIf="!userService.isLoggedIn()" mat-button routerLink="/user">Login</button>
     <button *ngIf="userService.isLoggedIn()" (click)="userService.logout()" mat-button routerLink="/user">Logout</button>
   </span>

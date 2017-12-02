@@ -1,0 +1,32 @@
+<mat-card *ngIf="user" class="editform">
+    <mat-card-content>
+        <h4>Edit</h4>
+        <div *ngIf="error">{{error}}</div>
+        <mat-form-field>
+          <input matInput #userName type="text" placeholder="Name" value="{{user.name}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput #userAge type="number" placeholder="Age" value="{{user.age}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput #userCity type="text" placeholder="City" value="{{user.city}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput #userPassword type="password" placeholder="Password" value="">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput #userPasswordre type="password" placeholder="Password again" value="">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" (click)="clickButton(userName.value, user.email, userAge.value, userCity.value, userPassword.value, userPasswordre.value)">
+            EDIT
+        </button>
+    </mat-card-content>
+  </mat-card>
+<div *ngIf="!user">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>

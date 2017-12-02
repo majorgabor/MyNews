@@ -23,6 +23,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { DeleteUserViewComponent } from './components/delete-user-view/delete-user-view.component';
 import { DeleteNewsViewComponent } from './components/delete-news-view/delete-news-view.component';
 import { DeleteCommentViewComponent } from './components/delete-comment-view/delete-comment-view.component';
+import { ProfileViewComponent } from './components/profile-view/profile-view.component';
+import { ProfileEditformComponent } from './components/profile-editform/profile-editform.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { DeleteCommentViewComponent } from './components/delete-comment-view/del
     DeleteUserViewComponent,
     DeleteNewsViewComponent,
     DeleteCommentViewComponent,
+    ProfileViewComponent,
+    ProfileEditformComponent,
   ],
   imports: [
     BrowserModule,

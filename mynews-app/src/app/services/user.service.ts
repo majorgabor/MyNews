@@ -57,6 +57,10 @@ export class UserService {
     return this.httpClient.delete(api + 'user/delete/' + id);
   }
 
+  public getLoggedInUser(): Observable<any> {
+    return this.httpClient.get(api + 'user/loggedin');
+  }
+
   public isLoggedIn(): boolean {
     return UserService.loggedInUser !== null;
   }
@@ -76,5 +80,5 @@ export class UserService {
       return false;
     }
     return role.includes(UserService.loggedInUser.role);
-  } 
+  }
 }

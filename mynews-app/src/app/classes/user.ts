@@ -4,16 +4,17 @@ export enum Role{
 }
 
 export class User {
-    private id: number;
+    public id: number;
     
-    private age: number;
-    private city: string;
+    
     private date: Date;
     public role: Role;
 
     public constructor(
         public name: string,
         private email: string,
+        private age: number,
+        private city: string,
         private password: string
     ) { }
 }
