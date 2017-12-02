@@ -5,7 +5,9 @@
     <span *ngIf="userService.isLoggedIn() && userService.userHasRole(['ADMIN'])">
       <button  mat-button [matMenuTriggerFor]="menu">Admin</button>
       <mat-menu  #menu="matMenu">
-        <button mat-menu-item routerLink="admin/delete">Delete User</button>
+        <button mat-menu-item routerLink="admin/delete/user">Delete User</button>
+        <button mat-menu-item routerLink="admin/delete/news">Delete News</button>
+        <button mat-menu-item routerLink="admin/delete/comment">Delete Comment</button>
       </mat-menu>
     </span>
   </span>

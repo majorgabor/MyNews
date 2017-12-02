@@ -8,7 +8,9 @@ import hu.elte.mynews.entity.News;
 import hu.elte.mynews.entity.User;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import lombok.Data;
@@ -29,8 +31,15 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    public Iterable<User> allUsers(){
-        return userRepository.findAll();
+    public List<User> allUsers(){
+        Iterable<User> allData = userRepository.findAll();
+        List allUser = new ArrayList<>();
+        for(User user: allData){
+            if(!user.getEmail().matches("deleted_user[0-9]+")){
+                allUser.add(user);
+            }
+        }
+        return allUser;
     }
     public User login(User user) throws UserException {
         Optional<User> loginUser = userRepository.findByEmail(user.getEmail());
@@ -145,8 +154,8 @@ public class UserService {
     public User deleteUser(long id) throws UserException {
         User deleteUser = userRepository.findOne(id);
         if(deleteUser != null && !deleteUser.equals(currentUser)){
-            deleteUser.setEmail("deleted_user");
-            deleteUser.setName("deleted_user");
+            deleteUser.setEmail("deleted_user" + deleteUser.getId());
+            deleteUser.setName("deleted_user" + deleteUser.getId());
             deleteUser.setAge(null);
             deleteUser.setCity(null);
             deleteUser.setPassword("");

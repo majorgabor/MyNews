@@ -21,7 +21,8 @@ import { MenuViewComponent } from './components/menu-view/menu-view.component';
 import { RegisterViewComponent } from './components/register-view/register-view.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DeleteUserViewComponent } from './components/delete-user-view/delete-user-view.component';
-import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { DeleteNewsViewComponent } from './components/delete-news-view/delete-news-view.component';
+import { DeleteCommentViewComponent } from './components/delete-comment-view/delete-comment-view.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
     RegisterViewComponent,
     RegisterComponent,
     DeleteUserViewComponent,
-    DeleteUserComponent,
+    DeleteNewsViewComponent,
+    DeleteCommentViewComponent,
   ],
   imports: [
     BrowserModule,

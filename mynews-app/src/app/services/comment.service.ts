@@ -11,6 +11,10 @@ export class CommentService {
     private httpClient: HttpClient
   ) { }
 
+  public getAllComments(): Observable<any> {
+    return this.httpClient.get(api + 'news/comments/all');
+  }
+
   public getCommentToNews(id: number) : Observable<any> {
     return this.httpClient.get(api + 'news/comments/' + id);
   }

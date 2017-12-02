@@ -23,7 +23,7 @@
           <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let user">
-                <button mat-raised-button color="warn" routerLink="user/{{user.id}}">DELETE</button>
+                <button mat-raised-button color="warn" (click)="deleteUser(user.id)" >DELETE</button>
             </mat-cell>
           </ng-container>
       

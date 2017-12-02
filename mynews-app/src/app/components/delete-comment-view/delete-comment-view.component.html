@@ -1,0 +1,42 @@
+<div *ngIf="dataSource && userService.isLoggedIn() && userService.userHasRole(['ADMIN'])" class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+      <mat-cell *matCellDef="let comment"> {{comment.user.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="news">
+      <mat-header-cell *matHeaderCellDef> News </mat-header-cell>
+      <mat-cell *matCellDef="let comment"> {{comment.news.text}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef> Comment </mat-header-cell>
+      <mat-cell *matCellDef="let comment"> {{comment.text}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let comment">
+          <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" >DELETE</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<div *ngIf="!dataSource">
+<mat-spinner class="spinner"></mat-spinner>
+</div>

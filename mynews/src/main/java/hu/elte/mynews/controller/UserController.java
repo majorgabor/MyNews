@@ -7,6 +7,7 @@ import static hu.elte.mynews.entity.User.Role.ADMIN;
 import static hu.elte.mynews.entity.User.Role.USER;
 import hu.elte.mynews.exception.UserException;
 import hu.elte.mynews.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +26,7 @@ public class UserController {
     private UserService userService;
     
     @GetMapping
-    private ResponseEntity<Iterable<User>> allUsers(){
+    private ResponseEntity<List<User>> allUsers(){
         return ResponseEntity.ok(userService.allUsers());
     }
     

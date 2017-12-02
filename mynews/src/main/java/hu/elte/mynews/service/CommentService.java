@@ -41,6 +41,10 @@ public class CommentService {
         return result;
     }
     
+    public Iterable<Comment> getAllComment(){
+        return commentRepository.findAll();
+    }
+    
     public Comment newComment(long id, Comment comment) throws UserException, NewsException{
         comment.setDate(new Date());
         comment.setLikes(0);

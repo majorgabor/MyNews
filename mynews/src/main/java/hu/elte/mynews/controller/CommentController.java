@@ -33,6 +33,11 @@ public class CommentController {
         return ResponseEntity.ok(commentService.listCommentToNews(id));
     }
     
+    @GetMapping("/all")
+    private ResponseEntity<Iterable<Comment>> getAllComment(){
+        return ResponseEntity.ok(commentService.getAllComment());
+    }
+    
     @Role({USER, ADMIN})
     @PutMapping("/addcomment/{id}")
     private ResponseEntity<Comment> newComment(@PathVariable long id, @RequestBody Comment comment){

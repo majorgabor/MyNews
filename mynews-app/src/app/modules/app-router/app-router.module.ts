@@ -6,7 +6,8 @@ import { CommentonNewsViewComponent } from '../../components/commenton-news-view
 import { UserViewComponent } from '../../components/user-view/user-view.component';
 import { RegisterViewComponent } from '../../components/register-view/register-view.component';
 import { DeleteUserViewComponent } from '../../components/delete-user-view/delete-user-view.component';
-import { DeleteUserComponent } from '../../components/delete-user/delete-user.component';
+import { DeleteNewsViewComponent } from '../../components/delete-news-view/delete-news-view.component';
+import { DeleteCommentViewComponent } from '../../components/delete-comment-view/delete-comment-view.component';
 
 const appRoutes: Routes = [
   { path: 'news', component: NewsViewComponent },
@@ -14,8 +15,9 @@ const appRoutes: Routes = [
   { path: 'news/comments/:id', component: CommentonNewsViewComponent },
   { path: 'user/:id', component: UserViewComponent },
   { path: 'register', component: RegisterViewComponent },
-  { path: 'admin/delete', component: DeleteUserViewComponent },
-  { path: 'admin/delete/user/:id', component: DeleteUserComponent }
+  { path: 'admin/delete/user', component: DeleteUserViewComponent },
+  { path: 'admin/delete/news', component: DeleteNewsViewComponent },
+  { path: 'admin/delete/comment', component: DeleteCommentViewComponent }
 ];
 
 @NgModule({
