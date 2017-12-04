@@ -169,6 +169,8 @@ public class UserService {
         User newsUser  = userRepository.findOne(userId);
         if(newsUser != null){
             newsUser.getNews().remove(news);
+            newsUser.getLikedNews().remove(news);
+            newsUser.getDislikedNews().remove(news);
             userRepository.save(newsUser);
             return newsUser;
         } else {
@@ -180,6 +182,8 @@ public class UserService {
         User commentedUser = userRepository.findOne(userId);
         if(commentedUser != null){
             commentedUser.getComment().remove(comment);
+            commentedUser.getLikedComment().remove(comment);
+            commentedUser.getDislikedComment().remove(comment);
             userRepository.save(commentedUser);
             return commentedUser;
         } else {

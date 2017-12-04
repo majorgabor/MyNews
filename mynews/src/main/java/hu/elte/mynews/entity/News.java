@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class News extends BaseEntity{
+    @Lob
     @Column(nullable = false)
     private String text;
     
