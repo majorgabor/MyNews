@@ -11,12 +11,18 @@ import { Message } from '../../classes/message';
 })
 export class SendMessagesComponent implements OnInit {
   private _users: User[];
+  private _error: string = "";
 
   @Output()
   public createMessage: EventEmitter<Message> = new EventEmitter();
 
   public clickButton(text: string, to: User): void {
-    this.createMessage.emit(new Message(text, to));
+    if(text.length > 0 && to != null){
+      this.createMessage.emit(new Message(text, to));
+      this._error = "";
+    } else {
+      this._error = "Something wrong!";
+    }
   }
 
   constructor(

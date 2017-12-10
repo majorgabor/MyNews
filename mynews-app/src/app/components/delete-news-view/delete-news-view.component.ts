@@ -14,7 +14,7 @@ export class DeleteNewsViewComponent implements OnInit {
   private _newses: News[];
   public _error: string = "";
   public dataSource;
-  displayedColumns = ['user', 'news', 'action'];
+  displayedColumns = ['user', 'news', 'reported', 'action'];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -28,8 +28,15 @@ export class DeleteNewsViewComponent implements OnInit {
         this._newses = newses;
         this.dataSource = new MatTableDataSource(this._newses);
       });
-    }, (error) => {
-      this._error = "Somethin went wrong!";
+    });
+  }
+
+  public deleteReport(id: number): void {
+    this.newsService.deleteReportNews(id).subscribe((news: News) => {
+      this.newsService.getAllNews().subscribe((newses: News[]) => {
+        this._newses = newses;
+        this.dataSource = new MatTableDataSource(this._newses);
+      });
     });
   }
 

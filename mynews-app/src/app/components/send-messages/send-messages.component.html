@@ -1,6 +1,9 @@
 <mat-card *ngIf="_users" class="sendmessage">
     <mat-card-content>
         <h4>Send Message</h4>
+        <span *ngIf="_error">
+            <p> {{ _error }} </p>
+        </span>
         <mat-form-field class="inputfield">
             <textarea matInput #messageText type="text" placeholder="write..."></textarea>
         </mat-form-field>

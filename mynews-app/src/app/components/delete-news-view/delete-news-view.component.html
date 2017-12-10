@@ -12,13 +12,22 @@
     <!-- Position Column -->
     <ng-container matColumnDef="user">
       <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
-      <mat-cell *matCellDef="let news"> {{news.user.email}} </mat-cell>
+      <mat-cell *matCellDef="let news" routerLink="/user/{{news.user.id}}"> {{news.user.email}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="news">
       <mat-header-cell *matHeaderCellDef> News </mat-header-cell>
-      <mat-cell *matCellDef="let news"> {{news.text}} </mat-cell>
+      <mat-cell *matCellDef="let news" routerLink="/news/comments/{{news.id}}"> {{news.text}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="reported">
+      <mat-header-cell *matHeaderCellDef> Reported </mat-header-cell>
+      <mat-cell *matCellDef="let news">
+        <span *ngIf="news.reported">
+          <button mat-button color="warn" (click)="deleteReport(news.id)">REPORTED</button> 
+        </span>
+      </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->

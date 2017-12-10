@@ -14,7 +14,7 @@ export class DeleteCommentViewComponent implements OnInit {
   private _comments: Comment[];
   private _error: string ="";
   public dataSource;
-  displayedColumns = ['user', 'news', 'comment', 'action'];
+  displayedColumns = ['user', 'news', 'comment', 'reported', 'action'];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -29,6 +29,15 @@ export class DeleteCommentViewComponent implements OnInit {
 
   public deleteComment(id: number): void {
     this.commentService.deleteComment(id).subscribe((comment: Comment) => {
+      this.commentService.getAllComments().subscribe((comments: Comment[]) => {
+        this._comments = comments;
+        this.dataSource = new MatTableDataSource(this._comments);
+      });
+    });
+  }
+
+  public deleteReport(id: number): void {
+    this.commentService.deleteReportComment(id).subscribe((comment: Comment) => {
       this.commentService.getAllComments().subscribe((comments: Comment[]) => {
         this._comments = comments;
         this.dataSource = new MatTableDataSource(this._comments);

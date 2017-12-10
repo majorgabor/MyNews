@@ -13,13 +13,13 @@
           <!-- Position Column -->
           <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+            <mat-cell *matCellDef="let user" routerLink="/user/{{user.id}}"> {{user.name}} </mat-cell>
           </ng-container>
       
           <!-- Name Column -->
           <ng-container matColumnDef="email">
             <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+            <mat-cell *matCellDef="let user" routerLink="/user/{{user.id}}"> {{user.email}} </mat-cell>
           </ng-container>
       
           <!-- Weight Column -->

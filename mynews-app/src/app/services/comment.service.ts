@@ -12,22 +12,30 @@ export class CommentService {
   ) { }
 
   public getAllComments(): Observable<any> {
-    return this.httpClient.get(api + 'news/comments/all');
+    return this.httpClient.get(api + 'comments/all');
   }
 
   public getCommentToNews(id: number) : Observable<any> {
-    return this.httpClient.get(api + 'news/comments/' + id);
+    return this.httpClient.get(api + 'comments/' + id);
   }
 
   public addComment(id: number, comment: Comment) : Observable<any> {
-    return this.httpClient.put(api + 'news/comments/addcomment/' + id, comment);
+    return this.httpClient.put(api + 'comments/addcomment/' + id, comment);
   }
 
-  public rate(rate: string, id: number): Observable<any> {
-    return this.httpClient.put(api + 'news/comments/' + rate + '/' + id, null);
+  public rateComment(rate: string, id: number): Observable<any> {
+    return this.httpClient.put(api + 'comments/' + rate + '/' + id, null);
   }
 
   public deleteComment(id: number) : Observable<any> {
-    return this.httpClient.delete(api + 'news/comments/delete/' + id);
+    return this.httpClient.delete(api + 'comments/delete/' + id);
+  }
+
+  public reportComment(id: number): Observable<any> {
+    return this.httpClient.put(api + 'comments/report/' + id, null);
+  }
+
+  public deleteReportComment(id: number): Observable<any> {
+    return this.httpClient.put(api + 'comments/deletereport/' + id, null);
   }
 }

@@ -73,4 +73,24 @@ public class NewsController {
             return ResponseEntity.badRequest().build();
         }
     }
+    
+    @Role({USER, ADMIN})
+    @PutMapping("/report/{id}")
+    private ResponseEntity<News> reportNews( @PathVariable long id){
+        try{
+            return ResponseEntity.ok(newsService.reportNews(id));
+        } catch (NewsException ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @Role({ADMIN})
+    @PutMapping("/deletereport/{id}")
+    private ResponseEntity<News> deleteReportNews( @PathVariable long id){
+        try{
+            return ResponseEntity.ok(newsService.deleteReportNews(id));
+        } catch (NewsException ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

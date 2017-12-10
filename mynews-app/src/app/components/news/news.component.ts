@@ -18,6 +18,13 @@ export class NewsComponent implements OnInit {
       this.news = news;
     });
   }
+
+  public report(): void {
+    this.newsService.report(this.news.id).subscribe((news: News) => {
+      this.news = news;
+    })
+  }
+
   constructor(
     private newsService: NewsService,
     private userService: UserService

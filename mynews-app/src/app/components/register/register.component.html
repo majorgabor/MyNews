@@ -1,20 +1,26 @@
 <mat-card class="registerform">
   <mat-card-content>
       <h4>Register</h4>
-      <div *ngIf="error">{{error}}</div>
+      <span *ngIf="_error">
+        <p> {{ _error }} </p>
+      </span>
       <mat-form-field>
         <input matInput #userName type="text" placeholder="Name">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput #userEmail type="email" placeholder="Email">
+        <input matInput #userEmail type="email" placeholder="Email" required>
       </mat-form-field>
       <br>
       <mat-form-field>
         <input matInput #userPassword type="password" placeholder="Password">
       </mat-form-field>
       <br>
-      <button mat-raised-button color="primary" (click)="register(userName.value, userEmail.value, userPassword.value)">
+      <mat-form-field>
+        <input matInput #userPasswordRe type="password" placeholder="Password again">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" (click)="register(userName.value, userEmail.value, userPassword.value, userPasswordRe.value)">
           REGISTER
       </button>
   </mat-card-content>

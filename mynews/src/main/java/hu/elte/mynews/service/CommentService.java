@@ -49,6 +49,7 @@ public class CommentService {
         comment.setDate(new Date());
         comment.setLikes(0);
         comment.setDislikes(0);
+        comment.setReported(Boolean.FALSE);
         comment.setUser(userService.findUser(userService.getCurrentUser().getId()));
         if(newsRepository.findOne(id) != null){
             comment.setNews(newsRepository.findOne(id));
@@ -107,7 +108,7 @@ public class CommentService {
         }
     }
 
-    void deleteNewsComment(List<Comment> comments) throws CommentException, NewsException, UserException {
+    public void deleteNewsComment(List<Comment> comments) throws CommentException, NewsException, UserException {
         for(Comment comment : comments){
             if(comment != null){
                 long userId = comment.getUser().getId();
@@ -116,6 +117,28 @@ public class CommentService {
             } else {
                 throw new CommentException();
             }
+        }
+    }
+    
+    public Comment reportComment(long id) throws CommentException {
+        Comment reportComment = commentRepository.findOne(id);
+        if(reportComment != null){
+            reportComment.setReported(Boolean.TRUE);
+            commentRepository.save(reportComment);
+            return reportComment;
+        } else {
+            throw new CommentException();
+        }
+    }
+    
+    public Comment deleteReportComment(long id) throws CommentException {
+        Comment reportComment = commentRepository.findOne(id);
+        if(reportComment != null){
+            reportComment.setReported(Boolean.FALSE);
+            commentRepository.save(reportComment);
+            return reportComment;
+        } else {
+            throw new CommentException();
         }
     }
 }

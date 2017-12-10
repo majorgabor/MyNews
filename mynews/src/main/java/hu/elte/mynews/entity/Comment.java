@@ -39,6 +39,9 @@ public class Comment extends BaseEntity {
     private Set<User> dislikerUser;
     
     @Column(nullable = false)
+    private Boolean reported;
+    
+    @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     

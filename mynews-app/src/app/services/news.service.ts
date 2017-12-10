@@ -31,4 +31,12 @@ export class NewsService {
   public deleteNews(id: number): Observable<any> {
     return this.httpClient.delete(api + 'news/delete/' + id);
   }
+
+  public report(id: number): Observable<any> {
+    return this.httpClient.put(api + 'news/report/' + id, null);
+  }
+
+  public deleteReportNews(id: number): Observable<any> {
+    return this.httpClient.put(api + 'news/deletereport/' + id, null);
+  }
 }

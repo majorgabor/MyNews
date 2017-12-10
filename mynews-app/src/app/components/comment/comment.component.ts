@@ -14,10 +14,17 @@ export class CommentComponent implements OnInit {
   public comment: Comment;
 
   public rate(rate: string): void {
-    this.commentService.rate(rate, this.comment.id).subscribe((comment: Comment) => {
+    this.commentService.rateComment(rate, this.comment.id).subscribe((comment: Comment) => {
       this.comment = comment;
     });
   }
+
+  public report(): void {
+    this.commentService.reportComment(this.comment.id).subscribe((comment: Comment) => {
+      this.comment = comment;
+    });
+  }
+
   constructor(
     private commentService: CommentService,
     private userService: UserService

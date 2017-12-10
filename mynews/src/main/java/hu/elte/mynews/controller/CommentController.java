@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/news/comments")
+@RequestMapping("/api/comments")
 public class CommentController {
     @Autowired
     private CommentService commentService;
@@ -74,6 +74,26 @@ public class CommentController {
         } catch (NewsException ex) {
             return ResponseEntity.badRequest().build();
         } catch (UserException ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @Role({USER, ADMIN})
+    @PutMapping("/report/{id}")
+    private ResponseEntity<Comment> reportComment( @PathVariable long id){
+        try{
+            return ResponseEntity.ok(commentService.reportComment(id));
+        } catch (CommentException ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @Role({ADMIN})
+    @PutMapping("/deletereport/{id}")
+    private ResponseEntity<Comment> deleteReportComment( @PathVariable long id){
+        try{
+            return ResponseEntity.ok(commentService.deleteReportComment(id));
+        } catch (CommentException ex) {
             return ResponseEntity.badRequest().build();
         }
     }

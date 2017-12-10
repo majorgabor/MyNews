@@ -38,6 +38,7 @@ public class NewsService {
     news.setDate(new Date());
         news.setLikes(0);
         news.setDislikes(0);
+        news.setReported(Boolean.FALSE);
         news.setUser( userService.getCurrentUser());
         newsRepository.save(news);
         userService.newNews(news);
@@ -106,6 +107,28 @@ public class NewsService {
             commentedNews.getComment().remove(comment);
             newsRepository.save(commentedNews);
             return commentedNews;
+        } else {
+            throw new NewsException();
+        }
+    }
+    
+    public News reportNews(long id) throws NewsException{
+        News reportedNews = newsRepository.findOne(id);
+        if(reportedNews != null){
+            reportedNews.setReported(Boolean.TRUE);
+            newsRepository.save(reportedNews);
+            return reportedNews;
+        } else {
+            throw new NewsException();
+        }
+    }
+    
+    public News deleteReportNews(long id) throws NewsException{
+        News reportedNews = newsRepository.findOne(id);
+        if(reportedNews != null){
+            reportedNews.setReported(Boolean.FALSE);
+            newsRepository.save(reportedNews);
+            return reportedNews;
         } else {
             throw new NewsException();
         }
