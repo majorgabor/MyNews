@@ -20,6 +20,7 @@
   </mat-card-content>
   <mat-card-actions *ngIf="userService.userHasRole(['USER', 'ADMIN'])">
       <button mat-raised-button color="primary" (click)="rate('like')">LIKE</button>
+      <button mat-raised-button color="primary" (click)="rate('unrate')">UNRATE</button>
       <button mat-raised-button color="primary" (click)="rate('dislike')">DISLIKE</button>
       <button mat-raised-button color="accent">REPORT</button>
     </mat-card-actions>

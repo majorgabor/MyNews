@@ -64,7 +64,7 @@ public class CommentService {
     
     public Comment rate(long id, String rate) throws CommentException, UserException {
         Comment ratedComment = commentRepository.findOne(id);
-        if(ratedComment != null && ( rate.equals("like") || rate.equals("dislike") )){
+        if(ratedComment != null && ( rate.equals("like") || rate.equals("dislike") || rate.equals("unrate"))){
             if(rate.equals("like")){
                 ratedComment.getDislikerUser().remove(userService.findUser(userService.getCurrentUser().getId()));
                 ratedComment.getLikerUser().add(userService.findUser(userService.getCurrentUser().getId()));
@@ -72,7 +72,14 @@ public class CommentService {
                 ratedComment.setDislikes(ratedComment.getDislikerUser().size());
                 userService.likeComment(ratedComment);
             }
-            if(rate.equals("dislike")){
+            else if(rate.equals("unrate")){
+                ratedComment.getLikerUser().remove(userService.findUser(userService.getCurrentUser().getId()));
+                ratedComment.getDislikerUser().remove(userService.findUser(userService.getCurrentUser().getId()));
+                ratedComment.setLikes(ratedComment.getLikerUser().size());
+                ratedComment.setDislikes(ratedComment.getDislikerUser().size());
+                userService.unRateComment(ratedComment);
+            }
+            else if(rate.equals("dislike")){
                 ratedComment.getLikerUser().remove(userService.findUser(userService.getCurrentUser().getId()));
                 ratedComment.getDislikerUser().add(userService.findUser(userService.getCurrentUser().getId()));
                 ratedComment.setLikes(ratedComment.getLikerUser().size());

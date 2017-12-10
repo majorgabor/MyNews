@@ -203,6 +203,18 @@ public class UserService {
         }
     }
     
+    public User unRateNews(News ratedNews) throws UserException {
+        User user = userRepository.findOne(currentUser.getId());
+        if(user != null){
+            user.getLikedNews().remove(ratedNews);
+            user.getDislikedNews().remove(ratedNews);
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
+    
     public User dislikeNews(News ratedNews) throws UserException {
         User user = userRepository.findOne(currentUser.getId());
         if(user != null){
@@ -219,6 +231,18 @@ public class UserService {
         User user = userRepository.findOne(currentUser.getId());
         if(user != null){
             user.getLikedComment().add(ratedComment);
+            user.getDislikedComment().remove(ratedComment);
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new UserException();
+        }
+    }
+    
+    public User unRateComment(Comment ratedComment) throws UserException {
+        User user = userRepository.findOne(currentUser.getId());
+        if(user != null){
+            user.getLikedComment().remove(ratedComment);
             user.getDislikedComment().remove(ratedComment);
             userRepository.save(user);
             return user;
