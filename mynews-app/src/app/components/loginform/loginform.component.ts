@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../classes/user';
 import { UserService } from '../../services/user.service';
 
@@ -10,24 +10,29 @@ import { UserService } from '../../services/user.service';
   providers: [UserService]
 })
 export class LoginformComponent implements OnInit {
-  private error: string = '';
+  private _error: string = '';
 
   public login(email: string, password: string): void {
     this.userService.login(email, password).subscribe((succsess: boolean) => {
       if(succsess){
-        this.router.navigate(['news']);
+        const redirectTo: string = this.activatedRouter.snapshot.queryParamMap.get('from') || 'news';
+        this.router.navigate([redirectTo]);
       } else {
-        this.error = "Wrong email or password!";
+        this._error = "Wrong email or password!";
       }
     });
   }
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private activatedRouter: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    if (this.activatedRouter.snapshot.queryParamMap.get('from')) {
+      this._error = 'Az adott oldal eléréséhez bejelentkezés szükséges!';
+    }
   }
 
 }

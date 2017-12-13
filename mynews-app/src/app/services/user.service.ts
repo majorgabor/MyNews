@@ -81,4 +81,12 @@ export class UserService {
     }
     return role.includes(UserService.loggedInUser.role);
   }
+
+  public getRole(): Role {
+    if (this.isLoggedIn()) {
+      return UserService.loggedInUser.role;
+      //return 'USER';
+    }
+    return undefined;
+}
 }

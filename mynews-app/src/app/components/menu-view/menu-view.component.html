@@ -8,16 +8,16 @@
     <span *ngIf="userService.isLoggedIn() && userService.userHasRole(['ADMIN'])">
       <button  mat-button [matMenuTriggerFor]="menu">Admin</button>
       <mat-menu  #menu="matMenu">
-        <button mat-menu-item routerLink="admin/delete/user">Delete User</button>
-        <button mat-menu-item routerLink="admin/delete/news">Delete News</button>
-        <button mat-menu-item routerLink="admin/delete/comment">Delete Comment</button>
+        <button mat-menu-item routerLink="admin/users">Users</button>
+        <button mat-menu-item routerLink="admin/news">News</button>
+        <button mat-menu-item routerLink="admin/comments">Comments</button>
       </mat-menu>
     </span>
   </span>
   <span class="right">
     <button *ngIf="!userService.isLoggedIn()" mat-button routerLink="/register">Registration</button>
     <button *ngIf="userService.isLoggedIn()" mat-button (click)="profile()">Profile</button>
-    <button *ngIf="!userService.isLoggedIn()" mat-button routerLink="/user">Login</button>
-    <button *ngIf="userService.isLoggedIn()" (click)="userService.logout()" mat-button routerLink="/user">Logout</button>
+    <button *ngIf="!userService.isLoggedIn()" mat-button routerLink="/login">Login</button>
+    <button *ngIf="userService.isLoggedIn()" (click)="userService.logout()" mat-button routerLink="/login">Logout</button>
   </span>
 </mat-toolbar>

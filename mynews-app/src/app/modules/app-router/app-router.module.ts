@@ -11,17 +11,22 @@ import { DeleteCommentViewComponent } from '../../components/delete-comment-view
 import { ProfileViewComponent } from '../../components/profile-view/profile-view.component';
 import { MessagesViewComponent } from '../../components/messages-view/messages-view.component';
 
+import { RouteGuardService } from '../../services/route-guard.service';
+import { UserService } from '../../services/user.service';
+
 const appRoutes: Routes = [
-  { path: 'news', component: NewsViewComponent },
-  { path: 'user', component: LoginViewComponent },
-  { path: 'news/comments/:id', component: CommentonNewsViewComponent },
-  { path: 'user/:id', component: UserViewComponent },
-  { path: 'register', component: RegisterViewComponent },
-  { path: 'admin/delete/user', component: DeleteUserViewComponent },
-  { path: 'admin/delete/news', component: DeleteNewsViewComponent },
-  { path: 'admin/delete/comment', component: DeleteCommentViewComponent },
-  { path: 'profile/:id', component: ProfileViewComponent },
-  { path: 'messages', component: MessagesViewComponent }
+  {path: '', canActivateChild: [RouteGuardService], children: [
+    { path: 'news', component: NewsViewComponent },
+    { path: 'login', component: LoginViewComponent },
+    { path: 'news/comments/:id', component: CommentonNewsViewComponent },
+    { path: 'user/:id', component: UserViewComponent, data: { roles: ['USER', 'ADMIN'] } },
+    { path: 'register', component: RegisterViewComponent },
+    { path: 'admin/users', component: DeleteUserViewComponent, data: { roles: ['ADMIN'] } },
+    { path: 'admin/news', component: DeleteNewsViewComponent, data: { roles: ['ADMIN'] } },
+    { path: 'admin/comments', component: DeleteCommentViewComponent, data: { roles: ['ADMIN'] } },
+    { path: 'profile/:id', component: ProfileViewComponent, data: { roles: ['USER', 'ADMIN'] } },
+    { path: 'messages', component: MessagesViewComponent, data: { roles: ['USER', 'ADMIN'] } }
+  ]}
 ];
 
 @NgModule({
@@ -31,6 +36,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [RouteGuardService, UserService]
 })
 export class AppRouterModule { }
