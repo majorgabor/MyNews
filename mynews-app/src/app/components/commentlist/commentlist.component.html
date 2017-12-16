@@ -2,7 +2,10 @@
   <mat-card-content>
     <h4>Comments</h4>
     <mat-list>
-        <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+      <span *ngIf="comments.length == 0" class="no-comment">
+        <h5>No comment yet.</h5>
+      </span>
+      <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </mat-list>
   </mat-card-content>
 </mat-card>

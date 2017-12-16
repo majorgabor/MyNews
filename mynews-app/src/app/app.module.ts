@@ -28,6 +28,7 @@ import { ProfileEditformComponent } from './components/profile-editform/profile-
 import { MessagesViewComponent } from './components/messages-view/messages-view.component';
 import { SendMessagesComponent } from './components/send-messages/send-messages.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { MessageToUserComponent } from './components/message-to-user/message-to-user.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { MessagesComponent } from './components/messages/messages.component';
     MessagesViewComponent,
     SendMessagesComponent,
     MessagesComponent,
+    MessageToUserComponent,
   ],
   imports: [
     BrowserModule,

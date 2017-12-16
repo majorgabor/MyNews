@@ -21,6 +21,11 @@
     <button mat-raised-button color="primary" (click)="rate('like')">LIKE</button>
     <button mat-raised-button color="primary" (click)="rate('unrate')">UNRATE</button>
     <button mat-raised-button color="primary" (click)="rate('dislike')">DISLIKE</button>
-    <button mat-raised-button color="accent" (click)="report()">REPORT</button>
+    <span *ngIf="!comment.reported">
+        <button mat-raised-button color="accent" (click)="report()">REPORT</button>
+    </span>
+    <span *ngIf="comment.reported">
+        <button mat-raised-button color="accent" disabled>REPORTED</button>
+    </span>
   </mat-card-actions>
 </mat-card>

@@ -78,7 +78,11 @@ public class UserService {
             if(user.getName().length() > 5) modifiedUser.setName(user.getName());
             if(user.getPassword().length() > 5) modifiedUser.setPassword(passwordEncoder.encode(user.getPassword()));
             modifiedUser.setCity(user.getCity());
-            modifiedUser.setAge(user.getAge());
+            if(user.getAge() == null){
+                modifiedUser.setAge(null);
+            }else if(user.getAge() > 0){
+                modifiedUser.setAge(user.getAge());
+            }
             modifiedUser.setNews(user.getNews());
             userRepository.save(modifiedUser);
             currentUser = userRepository.findOne(currentUser.getId());

@@ -29,7 +29,6 @@ export class MessagesViewComponent implements OnInit {
   ngOnInit() {
     this.messageService.mymessages().subscribe((messages: Message[]) => {
       this._messages = messages;
-      console.log(this._messages);
     });
   }
 

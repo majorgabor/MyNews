@@ -8,3 +8,7 @@ body {
 .right {
   float: right;
 }
+
+.mat-app-background {
+  margin-top: 84px;
+}

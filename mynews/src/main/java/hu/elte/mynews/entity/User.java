@@ -82,11 +82,11 @@ public class User extends BaseEntity {
     private Set<News> dislikedNews;
     
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private Set<Comment> likedComment;
     
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private Set<Comment> dislikedComment;
     
     @Override

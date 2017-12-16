@@ -18,7 +18,8 @@ export class RouteGuardService implements CanActivate, CanActivateChild {
     if (this.userService.isLoggedIn() && data.roles.includes(this.userService.getRole())) {
       return true;
     }
-    this.router.navigate(['/login'], { queryParams: { from: route.url } });
+    const url : string = route.url.map(p => p.path).join('/');
+    this.router.navigate(['/login'], { queryParams: { from: url } });
     return false;
   }
 

@@ -2,6 +2,9 @@
   <mat-card-content>
     <h4>News</h4>
     <mat-list>
+        <span *ngIf="newses.length == 0" class="no-news">
+          <h5>No news yet.</h5>
+        </span>
         <app-news *ngFor="let news of newses" [news]="news"></app-news>
     </mat-list>
   </mat-card-content>

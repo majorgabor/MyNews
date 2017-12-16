@@ -16,6 +16,7 @@ export class MessageService {
   }
 
   public sendMessage(message: Message): Observable<any> {
+    console.log("send!!!");
     return this.httpClient.post(api + "messages/send", message);
   }
 }

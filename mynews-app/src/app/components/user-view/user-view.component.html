@@ -1,8 +1,13 @@
-<div>
-  <div *ngIf="_user">
-    <app-user [user]="_user"></app-user>
-  </div>
-  <div *ngIf="!_user">
-    <mat-spinner class="spinner"></mat-spinner>
-  </div>
+<mat-card class="userview" *ngIf="_user">
+  <mat-card-content>
+    <mat-list>
+      <app-user [user]="_user"></app-user>
+    </mat-list>
+    <mat-list>
+      <app-message-to-user [user]="_user" (createMessage)="send($event)"></app-message-to-user>
+  </mat-list>
+  </mat-card-content>
+</mat-card>
+<div *ngIf="!_user">
+  <mat-spinner class="spinner"></mat-spinner>
 </div>

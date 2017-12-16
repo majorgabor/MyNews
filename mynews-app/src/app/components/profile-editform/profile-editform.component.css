@@ -2,8 +2,8 @@
     margin: auto;
 }
 .editform {
-    margin: 20px auto;
-    width: 50%;
+    margin: auto;
+    margin-top: 20px;
 }
 .mat-form-field {
     font-size: 14px;

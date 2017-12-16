@@ -18,11 +18,13 @@ export class ProfileEditformComponent implements OnInit {
   public editUser: EventEmitter<User> = new EventEmitter();
 
   public clickButton(name: string, email: string, age: number, city: string, password: string, passwordre: string): void {
-    if(password == passwordre){
+    if(password != passwordre){
+      this._error = "Passwords dosen't matches";
+    } else if(password.length < 6){
+      this._error = "Password has to be 6 character long";
+    } else {
       this._error = "";
       this.editUser.emit(new User(name, email, age, city, password));
-    } else {
-      this._error = "Passwords dosen't matches";
     }
   }
 

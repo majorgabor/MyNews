@@ -1,6 +1,8 @@
 <div *ngIf="_user && userService.isLoggedIn()">
-  <app-user [user]="_user"></app-user>
-  <app-profile-editform [user]="_user" (editUser)="modify($event)"></app-profile-editform>
+  <mat-card class="profile-card">
+    <app-user [user]="_user"></app-user>
+    <app-profile-editform [user]="_user" (editUser)="modify($event)"></app-profile-editform>
+  </mat-card>
 </div>
 <div *ngIf="!_user">
   <mat-spinner class="spinner"></mat-spinner>

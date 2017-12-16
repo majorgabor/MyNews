@@ -1,3 +1,9 @@
 .spinner {
     margin: auto;
 }
+
+.userview {
+    margin: 20px auto;
+    padding: 20px, 0px;
+    width: 60%;
+}

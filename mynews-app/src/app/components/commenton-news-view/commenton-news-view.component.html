@@ -1,5 +1,9 @@
 <div *ngIf="_news">
-    <app-news [news]="_news"></app-news>
+    <mat-card class="news-card">
+        <h4>News</h4>
+        <app-news [news]="_news"></app-news>
+    </mat-card>
+    
 </div>
 <div *ngIf="!_news">
     <mat-spinner class="spinner"></mat-spinner>

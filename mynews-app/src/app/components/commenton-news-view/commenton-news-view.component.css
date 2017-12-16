@@ -1,3 +1,9 @@
 .spinner {
     margin: auto;
 }
+
+.news-card {
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+}
