@@ -17,11 +17,11 @@ export class RegisterComponent implements OnInit {
     if(name.length < 6) {
       this._error = "Name at least 6 character long!";
     }
-    if(password.length < 6) {
-      this._error += "Password at least 6 character long!";
-    }
     if(password != passwordre){
       this._error += "Passwords don't macth!";
+    }
+    if(password.length < 6) {
+      this._error += "Password at least 6 character long!";
     }
     if(this._error == "") {
       this.userService.register(name, email, password).subscribe((succsess: boolean) => {
