@@ -42,10 +42,35 @@ public class MessageService {
         Iterable<Message> allMessage = messageRepository.findAll();
         List<Message> myMessage = new ArrayList<>();
         for(Message message : allMessage){
-            if(message.getToUser().equals(userService.getCurrentUser())){
+            if(message.getToUser().equals(userService.getCurrentUser()) || message.getFromUser().equals(userService.getCurrentUser())){
                 myMessage.add(message);
             }
         }
         return myMessage;
+    }
+    
+    public Set<User> contactList() {
+        Set<User> contacts = new HashSet();
+        List<Message> myMessage = myMessages();
+        for(Message message : myMessage){
+            contacts.add(message.getToUser());
+        }
+        return contacts;
+    }
+    
+    public List<Message> messagesFromId(long id) throws UserException {
+        User from = userService.findUser(id);
+        if(from != null){
+            Iterable<Message> allMessage = messageRepository.findAll();
+            List<Message> messagesFrom = new ArrayList<>();
+            for(Message message : allMessage){
+                if(message.getToUser().equals(from) || message.getFromUser().equals(from)){
+                    messagesFrom.add(message);
+                }
+            }
+            return messagesFrom;
+        } else {
+            throw new UserException();
+        }
     }
 }

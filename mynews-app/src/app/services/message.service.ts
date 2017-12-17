@@ -19,4 +19,12 @@ export class MessageService {
     console.log("send!!!");
     return this.httpClient.post(api + "messages/send", message);
   }
+
+  public contactList(): Observable<any> {
+    return this.httpClient.get(api + 'messages/contacts');
+  }
+
+  public messagesFrom(id: number): Observable<any> {
+    return this.httpClient.get(api + 'messaes/from/' + id);
+  }
 }

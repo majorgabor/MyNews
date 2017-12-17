@@ -1,9 +1,9 @@
 <div *ngIf="userService.isLoggedIn()">
     <app-send-messages (createMessage)="send($event)"></app-send-messages>
-    <div *ngIf="_messages">
-         <app-messages [messages]="_messages"></app-messages>
+    <div *ngIf="_contacts">
+        <app-contacts-list [contacts]="_contacts"></app-contacts-list>
     </div>
-    <div *ngIf="!_messages">
+    <div *ngIf="!_contacts">
             <mat-spinner class="spinner"></mat-spinner>
        </div>
 </div>

@@ -11,12 +11,12 @@ import { User } from '../../classes/user';
   providers: [UserService, MessageService]
 })
 export class MessagesViewComponent implements OnInit {
-  private _messages: Message[];
+  private _contacts: User[];
 
   public send(message: Message): void{
     this.messageService.sendMessage(message).subscribe((message: Message) => {
-      this.messageService.mymessages().subscribe((messages: Message[]) => {
-        this._messages = messages;
+      this.messageService.contactList().subscribe((contacts: User[]) => {
+        this._contacts = contacts;
       });
     });
   }
@@ -27,8 +27,8 @@ export class MessagesViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.messageService.mymessages().subscribe((messages: Message[]) => {
-      this._messages = messages;
+    this.messageService.contactList().subscribe((contacts: User[]) => {
+      this._contacts = contacts;
     });
   }
 

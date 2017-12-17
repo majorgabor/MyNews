@@ -29,6 +29,7 @@ import { MessagesViewComponent } from './components/messages-view/messages-view.
 import { SendMessagesComponent } from './components/send-messages/send-messages.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessageToUserComponent } from './components/message-to-user/message-to-user.component';
+import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { MessageToUserComponent } from './components/message-to-user/message-to-
     SendMessagesComponent,
     MessagesComponent,
     MessageToUserComponent,
+    ContactsListComponent,
   ],
   imports: [
     BrowserModule,

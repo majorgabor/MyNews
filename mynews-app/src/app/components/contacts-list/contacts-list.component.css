@@ -1,0 +1,9 @@
+.contactlist {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.no-contacts {
+    text-align: center;
+}

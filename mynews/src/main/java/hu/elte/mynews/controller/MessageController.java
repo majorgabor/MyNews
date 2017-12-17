@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.elte.mynews.service.MessageService;
 import java.util.List;
+import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,22 @@ public class MessageController {
         try{
             return ResponseEntity.ok(messageService.sendMessage(newMessage));
         } catch (UserException ex){
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @Role({USER, ADMIN})
+    @GetMapping("/contacts")
+    private ResponseEntity<Set<User>> contactList(){
+        return ResponseEntity.ok(messageService.contactList());
+    }
+    
+    @Role({USER, ADMIN})
+    @GetMapping("/from/{id}")
+    private ResponseEntity<List<Message>> messagesFromId(@PathVariable long id){
+        try {
+            return ResponseEntity.ok(messageService.messagesFromId(id));
+        } catch (UserException ex) {
             return ResponseEntity.badRequest().build();
         }
     }
