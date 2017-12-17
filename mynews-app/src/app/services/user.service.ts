@@ -88,5 +88,5 @@ export class UserService {
       //return 'USER';
     }
     return undefined;
-}
+  }
 }

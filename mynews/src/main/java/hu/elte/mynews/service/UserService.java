@@ -134,7 +134,6 @@ public class UserService {
         if(senderUser != null){
             senderUser.getSentMessage().add(message);
             userRepository.save(senderUser);
-            currentUser = senderUser;
             return senderUser;
         } else {
             throw new UserException();
@@ -146,7 +145,6 @@ public class UserService {
         if(reciverUser != null){
             reciverUser.getGotMessage().add(message);
             userRepository.save(reciverUser);
-            currentUser = reciverUser;
             return reciverUser;
         } else {
             throw new UserException();

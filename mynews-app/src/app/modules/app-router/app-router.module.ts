@@ -10,6 +10,7 @@ import { DeleteNewsViewComponent } from '../../components/delete-news-view/delet
 import { DeleteCommentViewComponent } from '../../components/delete-comment-view/delete-comment-view.component';
 import { ProfileViewComponent } from '../../components/profile-view/profile-view.component';
 import { MessagesViewComponent } from '../../components/messages-view/messages-view.component';
+import { ChatViewComponent } from '../../components/chat-view/chat-view.component';
 
 import { RouteGuardService } from '../../services/route-guard.service';
 import { UserService } from '../../services/user.service';
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     { path: 'admin/news', component: DeleteNewsViewComponent, data: { roles: ['ADMIN'] } },
     { path: 'admin/comments', component: DeleteCommentViewComponent, data: { roles: ['ADMIN'] } },
     { path: 'profile/:id', component: ProfileViewComponent, data: { roles: ['USER', 'ADMIN'] } },
-    { path: 'messages', component: MessagesViewComponent, data: { roles: ['USER', 'ADMIN'] } }
+    { path: 'messages', component: MessagesViewComponent, data: { roles: ['USER', 'ADMIN'] } },
+    { path: 'messages/chat/:id', component: ChatViewComponent, data: { roles: ['USER', 'ADMIN'] } }
   ]}
 ];
 

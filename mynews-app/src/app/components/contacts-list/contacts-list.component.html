@@ -1,12 +1,14 @@
-<mat-card class="contactlist">
+<mat-card class="contactlist" *ngIf="userService.isLoggedIn()">
   <mat-card-content>
     <h4>Contacts</h4>
     <span *ngIf="contacts.length == 0" class="no-contacts">
       <mat-list><h5>No contacts yet.</h5></mat-list>
     </span>
     <span *ngFor="let contact of contacts">
-      <mat-list>
-        {{ contact.name}}
+      <mat-list >
+        <mat-card routerLink="chat/{{contact.id}}">
+            {{ contact.name }}
+        </mat-card>
       </mat-list>
     </span>
   </mat-card-content>

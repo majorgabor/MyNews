@@ -16,7 +16,6 @@ export class MessageService {
   }
 
   public sendMessage(message: Message): Observable<any> {
-    console.log("send!!!");
     return this.httpClient.post(api + "messages/send", message);
   }
 
@@ -25,6 +24,6 @@ export class MessageService {
   }
 
   public messagesFrom(id: number): Observable<any> {
-    return this.httpClient.get(api + 'messaes/from/' + id);
+    return this.httpClient.get(api + 'messages/from/' + id);
   }
 }

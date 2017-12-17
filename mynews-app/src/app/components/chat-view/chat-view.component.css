@@ -1,0 +1,18 @@
+.spinner {
+    margin: auto;
+}
+
+.chat-card {
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.sendt {
+    text-align: right;
+}
+
+.send {
+    width: 60%;
+    margin: auto;
+}

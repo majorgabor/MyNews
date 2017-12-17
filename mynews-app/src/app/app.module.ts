@@ -27,9 +27,10 @@ import { ProfileViewComponent } from './components/profile-view/profile-view.com
 import { ProfileEditformComponent } from './components/profile-editform/profile-editform.component';
 import { MessagesViewComponent } from './components/messages-view/messages-view.component';
 import { SendMessagesComponent } from './components/send-messages/send-messages.component';
-import { MessagesComponent } from './components/messages/messages.component';
 import { MessageToUserComponent } from './components/message-to-user/message-to-user.component';
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
+import { ChatViewComponent } from './components/chat-view/chat-view.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -57,9 +58,10 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list.
     ProfileEditformComponent,
     MessagesViewComponent,
     SendMessagesComponent,
-    MessagesComponent,
     MessageToUserComponent,
     ContactsListComponent,
+    ChatViewComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

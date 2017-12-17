@@ -39,22 +39,30 @@ public class MessageService {
     }
     
     public List<Message> myMessages() {
-        Iterable<Message> allMessage = messageRepository.findAll();
-        List<Message> myMessage = new ArrayList<>();
-        for(Message message : allMessage){
-            if(message.getToUser().equals(userService.getCurrentUser()) || message.getFromUser().equals(userService.getCurrentUser())){
-                myMessage.add(message);
-            }
-        }
-        return myMessage;
+        User user = userService.findUser(userService.getCurrentUser().getId());
+        List<Message> myMessages = new ArrayList<>(user.getGotMessage());
+        myMessages.addAll(user.getSentMessage());
+        return myMessages;
     }
     
     public Set<User> contactList() {
         Set<User> contacts = new HashSet();
-        List<Message> myMessage = myMessages();
-        for(Message message : myMessage){
-            contacts.add(message.getToUser());
+        Iterable<Message> allMessage = messageRepository.findAll();
+        for(Message message : allMessage){
+            if(message.getToUser().getId() == userService.getCurrentUser().getId()){
+                contacts.add(message.getFromUser());
+            }
+            if(message.getFromUser().getId() == userService.getCurrentUser().getId()){
+                contacts.add(message.getToUser());
+            }
         }
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(userService.getCurrentUser());
+        for(User u: contacts){
+            System.out.println(u.toString());
+        }
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        contacts.remove(userService.getCurrentUser());
         return contacts;
     }
     
@@ -64,7 +72,8 @@ public class MessageService {
             Iterable<Message> allMessage = messageRepository.findAll();
             List<Message> messagesFrom = new ArrayList<>();
             for(Message message : allMessage){
-                if(message.getToUser().equals(from) || message.getFromUser().equals(from)){
+                if(message.getToUser().equals(from) && message.getFromUser().equals(userService.getCurrentUser())
+                || message.getToUser().equals(userService.getCurrentUser()) && message.getFromUser().equals(from)){
                     messagesFrom.add(message);
                 }
             }

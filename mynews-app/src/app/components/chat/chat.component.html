@@ -1,0 +1,9 @@
+<span *ngIf="message">
+  <mat-card class="chat">
+    <mat-card-content>{{ message.text }}</mat-card-content>
+    <mat-card-subtitle>{{ message.date | date:"yyyy MMMM d. H:mm:ss" }}</mat-card-subtitle>
+  </mat-card>
+</span>
+<span *ngIf="!message">
+  <mat-spinner class="spinner"></mat-spinner>
+</span>

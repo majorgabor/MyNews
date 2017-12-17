@@ -1,0 +1,21 @@
+<span *ngIf="userService.isLoggedIn()">
+  <span *ngIf="_messages && _chatUser && _me">
+    <mat-card class="send">
+      <app-message-to-user [user]="_chatUser" (createMessage)="send($event)"></app-message-to-user>    
+    </mat-card>
+    <mat-card class="chat-card">
+        <h4>Chat with {{ _chatUser.name }}</h4>
+      <span *ngFor="let message of _messages">
+        <span *ngIf="message.fromUser.id != _me.id">
+          <app-chat class="received"  [message]="message"></app-chat>
+        </span>
+        <span class="sendt" *ngIf="message.fromUser.id == _me.id">
+            <app-chat [message]="message"></app-chat>
+        </span>
+      </span>
+    </mat-card>
+  </span>
+  <span *ngIf="!_messages || !_chatUser || !_me">
+    <mat-spinner class="spinner"></mat-spinner>    
+  </span>
+</span>
