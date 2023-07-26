@@ -1,5 +1,7 @@
 # MyNews
 
+This is an assignment made for the application development lecture (IP-08cALKEG) at Eötvös Loránd University.
+
 ### Bevezető
 A MyNews egy olyan közösségi oldal, ahol a regisztrált felhasználók bejegyzéseket tehetnek közzé szöveges formátumban. A bejegyzések mind publikusak, de csak a regisztrált felhasználók tudnak hozzászólni és/vagy kedvelni vagy nem kedvelni egy bejegyzést.
 
